@@ -1,7 +1,7 @@
 import { CHANGE_PEG_COLOR, ADD_GUESS } from "../actions";
 import Colors from "../constants/Colors";
 
-guessReducer_initialState = {
+const guessReducer_initialState = {
   pegEntryList: [
     { colorIndex: 0, pegIndex: 0, id: "first" },
     { colorIndex: 1, pegIndex: 1, id: "second" },

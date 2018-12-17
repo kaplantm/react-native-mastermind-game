@@ -1,6 +1,7 @@
 import { CHANGE_PEG_COLOR, ADD_GUESS } from ".";
 
 export function changePeg(peg) {
+  console.log(peg);
   return {
     type: CHANGE_PEG_COLOR,
     payload: peg
