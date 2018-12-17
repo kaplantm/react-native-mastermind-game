@@ -8,23 +8,23 @@ import {
   View
 } from "react-native";
 import Peg from "./Peg";
+import Colors from "../constants/Colors";
 
-const pegs = [
-  { color: "hsla(0, 64%, 74%, 1)", id: "r" },
-  { color: "hsla(197, 64%, 74%, 1)", id: "b" },
-  { color: "hsla(118, 64%, 74%, 1)", id: "g" },
-  { color: "hsla(51, 85%, 74%, 1)", id: "y" }
-];
 export default class PegRow extends React.Component {
   _renderPegs = () => {
-    return pegs.map(element => {
+    const { pegList } = this.props;
+    return pegList.map(element => {
       if (this.props.type == "entry") {
         return (
-          <TouchableOpacity style={{ flex: 1, margin: 10 }} key={element.id}>
+          <TouchableOpacity
+            style={{ flex: 1, margin: 10 }}
+            key={element.id}
+            onPress={() => this.props.pegAction(element)}
+          >
             <Peg
               peg={element}
               styleProp={{
-                backgroundColor: element.color
+                backgroundColor: Colors.codePegs[element.colorIndex].color
               }}
             />
           </TouchableOpacity>

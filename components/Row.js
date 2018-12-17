@@ -11,7 +11,11 @@ export default class Row extends React.Component {
     return (
       <View style={styles.container}>
         <View style={styles.code}>
-          <PegBox type={this.props.type} />
+          <PegBox
+            type={this.props.type}
+            pegList={this.props.pegList}
+            pegAction={this.props.pegAction}
+          />
         </View>
         <View style={styles.score}>
           {this.props.type === "code" ? (
@@ -46,10 +50,10 @@ const styles = StyleSheet.create({
     flex: 1
   },
   buttonText: {
-    color: Colors.textColor,
+    color: Colors.text,
     fontSize: 40
   },
   buttonTextMinor: {
-    color: Colors.textColor
+    color: Colors.text
   }
 });

@@ -11,8 +11,9 @@ import {
 import CodeContainer from "../components/CodeContainer";
 import GuessHistoryContainer from "../components/GuessHistoryContainer";
 import NewGuessContainer from "../components/NewGuessContainer";
+import { connect } from "react-redux";
 
-export default class JottoScreen extends React.Component {
+class JottoScreen extends React.Component {
   static navigationOptions = {
     header: null
   };
@@ -21,14 +22,27 @@ export default class JottoScreen extends React.Component {
     return (
       <SafeAreaView style={styles.container}>
         <View style={styles.contentContainer}>
-          <CodeContainer />
-          <GuessHistoryContainer />
+          {/* <CodeContainer /> */}
+          {/* <GuessHistoryContainer /> */}
           <NewGuessContainer />
         </View>
       </SafeAreaView>
     );
   }
 }
+
+const mapStateToProps = state => ({
+  state
+});
+
+const mapDispatchToProps = dispatch => ({
+  dispatch
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(JottoScreen);
 
 const styles = StyleSheet.create({
   container: {

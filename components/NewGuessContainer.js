@@ -9,19 +9,41 @@ import {
 } from "react-native";
 import Row from "./Row";
 import Colors from "../constants/Colors";
+import { changePeg } from "../actions/pegActions";
+import { connect } from "react-redux";
 
-export default class GuessHistoryContainer extends React.Component {
+class GuessHistoryContainer extends React.Component {
   render() {
     return (
       <View style={styles.container}>
         <ScrollView>
-          {/* TODO rows will later be added dynamicaly */}
-          <Row type="entry" />
+          <Row
+            type="entry"
+            pegList={this.props.pegList}
+            pegAction={this.props.changePeg}
+          />
         </ScrollView>
       </View>
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    pegList: state.pegReducer.pegEntryList
+  };
+};
+
+const mapDispatchToProps = dispatch => ({
+  changePeg: data => {
+    dispatch(changePeg(data));
+  }
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(GuessHistoryContainer);
 
 const styles = StyleSheet.create({
   container: {

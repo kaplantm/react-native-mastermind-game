@@ -6,8 +6,8 @@ export default class OverallScoreBox extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={{ fontSize: 30, color: Colors.textColor }}>42</Text>
-        <Text style={{ fontSize: 14, color: Colors.textColor }}>Guesses</Text>
+        <Text style={{ fontSize: 30, color: Colors.text }}>42</Text>
+        <Text style={{ fontSize: 14, color: Colors.text }}>Guesses</Text>
       </View>
     );
   }
