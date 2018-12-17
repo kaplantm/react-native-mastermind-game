@@ -4,10 +4,10 @@ import { shuffleArray } from "../shared/utils";
 
 codeReducer_initialState = {
   pegCodeList: [
-    { colorIndex: 0, pegIndex: 1, id: "first" },
-    { colorIndex: 1, pegIndex: 2, id: "second" },
-    { colorIndex: 2, pegIndex: 3, id: "third" },
-    { colorIndex: 3, pegIndex: 4, id: "fourth" }
+    { colorIndex: 0, pegIndex: 0, id: "first" },
+    { colorIndex: 1, pegIndex: 1, id: "second" },
+    { colorIndex: 2, pegIndex: 2, id: "third" },
+    { colorIndex: 3, pegIndex: 3, id: "fourth" }
   ]
 };
 

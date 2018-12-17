@@ -32,7 +32,7 @@ class JottoScreen extends React.Component {
       <SafeAreaView style={styles.container}>
         <View style={styles.contentContainer}>
           <CodeContainer pegList={this.props.pegCodeList} />
-          {/* <GuessHistoryContainer guessList={this.props.guessList} /> */}
+          <GuessHistoryContainer guessList={this.props.guessList} />
           <NewGuessContainer
             pegList={this.props.pegList}
             pegAction={this.props.changePeg}

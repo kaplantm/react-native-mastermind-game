@@ -10,14 +10,18 @@ import {
 import Row from "./Row";
 import PegBox from "../components/PegBox";
 
+const delly = [
+  { colorIndex: 0, pegIndex: 1, id: "first" },
+  { colorIndex: 1, pegIndex: 2, id: "second" },
+  { colorIndex: 2, pegIndex: 3, id: "third" },
+  { colorIndex: 3, pegIndex: 4, id: "fourth" }
+];
+
 export default class GuessHistoryContainer extends React.Component {
   _renderRows() {
-    this.props.guessList.map(element => {
-      // console.log("- - - - - - - - - - - - - - - - ");
-      // console.log(element);
-      // console.log("******************************** ");
+    return this.props.guessList.map((element, index) => {
       return (
-        <Row type="guess">
+        <Row type="guess" key={"guessRow" + index.toString()}>
           <PegBox type="guess" pegList={element} />
         </Row>
       );

@@ -13,10 +13,6 @@ import Colors from "../constants/Colors";
 
 export default class GuessHistoryContainer extends React.Component {
   render() {
-    // console.log("/ / / / / / /");
-    // console.log(this.props.pegList);
-    // console.log("     \\ ");
-
     return (
       <View style={styles.container}>
         <ScrollView>
