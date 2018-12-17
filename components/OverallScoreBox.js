@@ -1,15 +1,13 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
+import Colors from "../constants/Colors";
+
 export default class OverallScoreBox extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={{ fontSize: 30, color: "hsla(197, 20%, 50%, 1)" }}>
-          42
-        </Text>
-        <Text style={{ fontSize: 14, color: "hsla(197, 20%, 50%, 1)" }}>
-          Guesses
-        </Text>
+        <Text style={{ fontSize: 30, color: Colors.textColor }}>42</Text>
+        <Text style={{ fontSize: 14, color: Colors.textColor }}>Guesses</Text>
       </View>
     );
   }

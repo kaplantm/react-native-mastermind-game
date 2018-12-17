@@ -24,7 +24,6 @@ export default class GuessHistoryContainer extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 5,
-    backgroundColor: "hsla(197, 20%, 98%, 1)"
+    flex: 5
   }
 });

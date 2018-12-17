@@ -8,6 +8,7 @@ import {
   View
 } from "react-native";
 import Row from "./Row";
+import Colors from "../constants/Colors";
 
 export default class GuessHistoryContainer extends React.Component {
   render() {
@@ -28,8 +29,8 @@ const styles = StyleSheet.create({
     borderTopWidth: 2,
     borderTopColor: "hsla(197, 20%, 50%, 1)",
     borderBottomWidth: 2,
-    borderBottomColor: "hsla(197, 20%, 50%, 1)",
-    backgroundColor: "hsla(197, 20%, 95%, 1)",
+    borderBottomColor: Colors.rowBorder,
+    backgroundColor: Colors.rowBg,
     shadowColor: "hsla(197, 20%, 50%, 1)",
     shadowOffset: { width: 0, height: 0 },
     shadowOpacity: 0.5,

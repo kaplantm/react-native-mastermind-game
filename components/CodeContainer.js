@@ -1,6 +1,7 @@
 import React from "react";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
 import Row from "./Row";
+import Colors from "../constants/Colors";
 
 export default class CodeContainer extends React.Component {
   render() {
@@ -16,8 +17,8 @@ export default class CodeContainer extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "hsla(197, 20%, 95%, 1)",
+    backgroundColor: Colors.rowBg,
     borderWidth: 2,
-    borderColor: "hsla(197, 20%, 90%, 1)"
+    borderColor: Colors.rowBorderLight
   }
 });

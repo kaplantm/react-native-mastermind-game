@@ -4,6 +4,7 @@ import PegBox from "../components/PegBox";
 import OverallScoreBox from "./OverallScoreBox";
 import RowScoreBox from "./RowScoreBox";
 import CustomButton from "./CustomButton";
+import Colors from "../constants/Colors";
 
 export default class Row extends React.Component {
   render() {
@@ -45,10 +46,10 @@ const styles = StyleSheet.create({
     flex: 1
   },
   buttonText: {
-    color: "hsla(197, 50%, 50%, 1)",
+    color: Colors.textColor,
     fontSize: 40
   },
   buttonTextMinor: {
-    color: "hsla(197, 50%, 50%, 1)"
+    color: Colors.textColor
   }
 });

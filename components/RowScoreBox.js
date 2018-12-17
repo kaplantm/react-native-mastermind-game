@@ -11,22 +11,6 @@ const pegs = [
 ];
 
 export default class OverallScoreBox extends React.Component {
-  // _renderPegs = () => {
-  //   return shuffleArray(pegs).map((element, index) => {
-  //     return (
-  //       <Peg
-  //         key={element.id}
-  //         peg={element}
-  //         styleProp={{
-  //           backgroundColor: element.color,
-  //           borderColor: "grey",
-  //           margin: 2
-  //         }}
-  //       />
-  //     );
-  //   });
-  // };
-
   _renderPegs = () => {
     //not sure shuffle array is neccessary, may just want to sort so black is first
     let pegElementList = shuffleArray(pegs).map((element, index) => {
