@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import Colors from "../constants/Colors";
+import Colors from "../shared/Colors";
 
 export default class OverallScoreBox extends React.Component {
   render() {

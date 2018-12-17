@@ -1,13 +1,19 @@
 import React from "react";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
 import Row from "./Row";
-import Colors from "../constants/Colors";
+import Colors from "../shared/Colors";
 import PegBox from "../components/PegBox";
 
 export default class CodeContainer extends React.Component {
   render() {
+    const winStyle = this.props.score
+      ? {
+          backgroundColor: Colors.rowWinBg,
+          borderColor: Colors.rowWinBorderLight
+        }
+      : {};
     return (
-      <View style={styles.container}>
+      <View style={[styles.container, winStyle]}>
         {/* TODO code row will later be added dynamicaly */}
         <Row
           type="code"
@@ -25,7 +31,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: Colors.rowBg,
-    borderWidth: 2,
+    borderTopWidth: 2,
+    borderBottomWidth: 2,
     borderColor: Colors.rowBorderLight
   }
 });

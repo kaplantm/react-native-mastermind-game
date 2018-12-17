@@ -4,6 +4,7 @@ export default {
   rowBg: "hsla(197, 20%, 95%, 1)",
   rowBorder: "hsla(197, 20%, 50%, 1)",
   rowBorderLight: "hsla(197, 20%, 90%, 1)",
+  rowWinBg: "hsla(118, 64%, 74%, 1)",
   text: "hsla(197, 30%, 50%, 1)",
   codePegs: [
     { name: "red", color: "hsla(0, 64%, 74%, 1)" },

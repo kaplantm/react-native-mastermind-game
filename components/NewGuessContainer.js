@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import Row from "./Row";
 import PegBox from "../components/PegBox";
-import Colors from "../constants/Colors";
+import Colors from "../shared/Colors";
 
 export default class GuessHistoryContainer extends React.Component {
   render() {

@@ -11,3 +11,33 @@ export const shuffleArray = array => {
   }
   return array;
 };
+
+export const compareCode = (code, guess) => {
+  code = code.map(element => element.colorIndex);
+  guess = guess.map(element => element.colorIndex);
+
+  let exactScore = 0;
+  let containsScore = 0;
+  let message = "Guess again";
+
+  if (code.join("") === guess.join("")) {
+    exactScore = 4;
+    containsScore = 0;
+    message = "You Win";
+  } else {
+    code.forEach((element, index) => {
+      if (guess.indexOf(element) != -1) {
+        if (guess[index] == element) {
+          exactScore++;
+        } else {
+          containsScore++;
+        }
+      }
+    });
+  }
+  return {
+    exactScore: exactScore,
+    containsScore: containsScore,
+    message: message
+  };
+};

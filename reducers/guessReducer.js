@@ -1,5 +1,5 @@
 import { CHANGE_PEG_COLOR, ADD_GUESS } from "../actions";
-import Colors from "../constants/Colors";
+import Colors from "../shared/Colors";
 
 const guessReducer_initialState = {
   pegEntryList: [
@@ -15,7 +15,12 @@ const guessReducer_initialState = {
       { colorIndex: 2, pegIndex: 2, id: "third" },
       { colorIndex: 3, pegIndex: 3, id: "fourth" }
     ]
-  ]
+  ],
+  score: {
+    containsScore: 0,
+    exactScore: 0,
+    message: "Guess Again" //TODO maybe remove message
+  }
 };
 
 export default function guessReducer(
@@ -37,21 +42,15 @@ export default function guessReducer(
         { colorIndex: 0, pegIndex: 3, id: "fourth" }
       ];
 
-      console.log("ADD_GUESS");
       let newGuessHistoryList = [...state.guessHistoryList];
-      newGuessHistoryList.push([...action.payload]);
+      newGuessHistoryList.push([...action.payload.guess]);
       //TODO add test to make sure default guess is set
-
-      let derp = {
-        ...state,
-        guessHistoryList: newGuessHistoryList,
-        pegEntryList: defaultGuess
-      };
 
       return {
         ...state,
         guessHistoryList: newGuessHistoryList,
-        pegEntryList: defaultGuess
+        pegEntryList: defaultGuess,
+        score: action.payload.score
       };
     }
     default:

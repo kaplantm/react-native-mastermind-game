@@ -7,10 +7,11 @@ import {
   TouchableOpacity,
   View
 } from "react-native";
-
+import { compareCode } from "../shared/utils";
 import CodeContainer from "../components/CodeContainer";
 import GuessHistoryContainer from "../components/GuessHistoryContainer";
 import NewGuessContainer from "../components/NewGuessContainer";
+import Banner from "../components/Banner";
 import { connect } from "react-redux";
 import {
   CHANGE_PEG_FUNCTION,
@@ -18,15 +19,23 @@ import {
   ADD_GUESS_FUNCTION
 } from "../actions/function_constants";
 
+const codeLength = 4; //TODO make this a setting
+
 class JottoScreen extends React.Component {
   static navigationOptions = {
     header: null
   };
 
   componentDidMount() {
-    this.props.generateCode(4);
+    this.props.generateCode(codeLength);
   }
 
+  _handleSubmitGuess = () => {
+    let score = compareCode(this.props.pegCodeList, this.props.pegList);
+    // let solved = this.props.pegList == this.props.pegCodeList ? true : false;
+    console.log(score);
+    this.props.addGuess(this.props.pegList, score);
+  };
   render() {
     return (
       <SafeAreaView style={styles.container}>
@@ -36,11 +45,15 @@ class JottoScreen extends React.Component {
             guessList={this.props.guessList}
           />
           <GuessHistoryContainer guessList={this.props.guessList} />
-          <NewGuessContainer
-            pegList={this.props.pegList}
-            pegAction={this.props.changePeg}
-            addGuess={() => this.props.addGuess(this.props.pegList)}
-          />
+          {this.props.score.exactScore == codeLength ? (
+            <Banner color="green" text="You Win" />
+          ) : (
+            <NewGuessContainer
+              pegList={this.props.pegList}
+              pegAction={this.props.changePeg}
+              addGuess={this._handleSubmitGuess}
+            />
+          )}
         </View>
       </SafeAreaView>
     );
@@ -51,7 +64,8 @@ const mapStateToProps = state => {
   return {
     pegList: state.guessReducer.pegEntryList,
     pegCodeList: state.codeReducer.pegCodeList,
-    guessList: state.guessReducer.guessHistoryList
+    guessList: state.guessReducer.guessHistoryList,
+    score: state.guessReducer.score
   };
 };
 
@@ -62,8 +76,8 @@ const mapDispatchToProps = dispatch => ({
   generateCode: length => {
     dispatch(GENERATE_CODE_FUNCTION(length));
   },
-  addGuess: guess => {
-    dispatch(ADD_GUESS_FUNCTION(guess));
+  addGuess: (guess, solved) => {
+    dispatch(ADD_GUESS_FUNCTION(guess, solved));
   }
 });
 

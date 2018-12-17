@@ -1,5 +1,5 @@
 import { GENERATE_CODE } from "../actions";
-import Colors from "../constants/Colors";
+import Colors from "../shared/Colors";
 import { shuffleArray } from "../shared/utils";
 
 codeReducer_initialState = {
