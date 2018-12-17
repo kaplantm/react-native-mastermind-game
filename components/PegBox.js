@@ -55,7 +55,7 @@ export default class PegRow extends React.Component {
   };
   _renderPegs = () => {
     const { pegList } = this.props;
-    return pegList.map(element => {
+    return pegList.pegs.map(element => {
       contents =
         this.props.type == "entry"
           ? this._EntryPegs(element)

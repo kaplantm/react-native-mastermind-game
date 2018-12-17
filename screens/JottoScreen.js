@@ -31,10 +31,11 @@ class JottoScreen extends React.Component {
   }
 
   _handleSubmitGuess = () => {
-    let score = compareCode(this.props.pegCodeList, this.props.pegList);
-    // let solved = this.props.pegList == this.props.pegCodeList ? true : false;
-    console.log(score);
-    this.props.addGuess(this.props.pegList, score);
+    let score = compareCode(
+      this.props.pegCodeList.pegs,
+      this.props.pegList.pegs
+    );
+    this.props.addGuess({ ...this.props.pegList, score });
   };
   render() {
     return (
@@ -45,7 +46,7 @@ class JottoScreen extends React.Component {
             guessList={this.props.guessList}
           />
           <GuessHistoryContainer guessList={this.props.guessList} />
-          {this.props.score.exactScore == codeLength ? (
+          {this.props.isCorrectCode ? (
             <Banner color="green" text="You Win" />
           ) : (
             <NewGuessContainer
@@ -65,7 +66,7 @@ const mapStateToProps = state => {
     pegList: state.guessReducer.pegEntryList,
     pegCodeList: state.codeReducer.pegCodeList,
     guessList: state.guessReducer.guessHistoryList,
-    score: state.guessReducer.score
+    isCorrectCode: state.guessReducer.isCorrectCode
   };
 };
 
