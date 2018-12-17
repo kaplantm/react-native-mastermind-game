@@ -3,7 +3,10 @@ import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 export default class CustomButton extends React.Component {
   render() {
     return (
-      <TouchableOpacity style={[styles.button, this.props.styleProp]}>
+      <TouchableOpacity
+        style={[styles.button, this.props.styleProp]}
+        onPress={this.props.onPress}
+      >
         {this.props.children}
       </TouchableOpacity>
     );

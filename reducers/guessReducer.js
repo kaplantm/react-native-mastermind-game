@@ -4,9 +4,9 @@ import Colors from "../constants/Colors";
 const guessReducer_initialState = {
   pegEntryList: [
     { colorIndex: 0, pegIndex: 0, id: "first" },
-    { colorIndex: 1, pegIndex: 1, id: "second" },
-    { colorIndex: 2, pegIndex: 2, id: "third" },
-    { colorIndex: 3, pegIndex: 3, id: "fourth" }
+    { colorIndex: 0, pegIndex: 1, id: "second" },
+    { colorIndex: 0, pegIndex: 2, id: "third" },
+    { colorIndex: 0, pegIndex: 3, id: "fourth" }
   ],
   guessHistoryList: [
     [
@@ -30,9 +30,29 @@ export default function guessReducer(
       return { ...state, pegEntryList: newPegList };
     }
     case ADD_GUESS: {
+      let defaultGuess = [
+        { colorIndex: 0, pegIndex: 0, id: "first" },
+        { colorIndex: 0, pegIndex: 1, id: "second" },
+        { colorIndex: 0, pegIndex: 2, id: "third" },
+        { colorIndex: 0, pegIndex: 3, id: "fourth" }
+      ];
+
+      console.log("ADD_GUESS");
       let newGuessHistoryList = [...state.guessHistoryList];
-      newGuessHistoryList.push(action.payload);
-      return { ...state, guessHistoryList: newGuessHistoryList };
+      newGuessHistoryList.push([...action.payload]);
+      //TODO add test to make sure default guess is set
+
+      let derp = {
+        ...state,
+        guessHistoryList: newGuessHistoryList,
+        pegEntryList: defaultGuess
+      };
+
+      return {
+        ...state,
+        guessHistoryList: newGuessHistoryList,
+        pegEntryList: defaultGuess
+      };
     }
     default:
       return state;

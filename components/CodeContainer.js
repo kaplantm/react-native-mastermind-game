@@ -9,7 +9,11 @@ export default class CodeContainer extends React.Component {
     return (
       <View style={styles.container}>
         {/* TODO code row will later be added dynamicaly */}
-        <Row type="code" pegList={this.props.pegList}>
+        <Row
+          type="code"
+          pegList={this.props.pegList}
+          guessList={this.props.guessList}
+        >
           <PegBox type="code" pegList={this.props.pegList} />
         </Row>
       </View>

@@ -31,11 +31,15 @@ class JottoScreen extends React.Component {
     return (
       <SafeAreaView style={styles.container}>
         <View style={styles.contentContainer}>
-          <CodeContainer pegList={this.props.pegCodeList} />
+          <CodeContainer
+            pegList={this.props.pegCodeList}
+            guessList={this.props.guessList}
+          />
           <GuessHistoryContainer guessList={this.props.guessList} />
           <NewGuessContainer
             pegList={this.props.pegList}
             pegAction={this.props.changePeg}
+            addGuess={() => this.props.addGuess(this.props.pegList)}
           />
         </View>
       </SafeAreaView>
@@ -58,8 +62,8 @@ const mapDispatchToProps = dispatch => ({
   generateCode: length => {
     dispatch(GENERATE_CODE_FUNCTION(length));
   },
-  addGuess: pegList => {
-    dispatch(ADD_GUESS_FUNCTION(pegList));
+  addGuess: guess => {
+    dispatch(ADD_GUESS_FUNCTION(guess));
   }
 });
 

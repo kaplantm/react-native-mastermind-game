@@ -7,15 +7,16 @@ import Colors from "../constants/Colors";
 
 export default class Row extends React.Component {
   render() {
+    if (this.props.type === "entry") console.log(this.props.addGuess);
     return (
       <View style={styles.container}>
         <View style={styles.code}>{this.props.children}</View>
         <View style={styles.score}>
           {this.props.type === "code" ? (
-            <OverallScoreBox />
+            <OverallScoreBox guessList={this.props.guessList} />
           ) : this.props.type === "entry" ? (
             <CustomButton
-              action="TODO"
+              onPress={this.props.addGuess}
               styleProp={{ backgroundColor: "white" }}
               label="Guess"
             >
