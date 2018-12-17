@@ -2,13 +2,16 @@ import React from "react";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
 import Row from "./Row";
 import Colors from "../constants/Colors";
+import PegBox from "../components/PegBox";
 
 export default class CodeContainer extends React.Component {
   render() {
     return (
       <View style={styles.container}>
         {/* TODO code row will later be added dynamicaly */}
-        <Row type="code" />
+        <Row type="code" pegList={this.props.pegList}>
+          <PegBox type="code" pegList={this.props.pegList} />
+        </Row>
       </View>
     );
   }

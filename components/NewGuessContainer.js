@@ -8,42 +8,30 @@ import {
   View
 } from "react-native";
 import Row from "./Row";
+import PegBox from "../components/PegBox";
 import Colors from "../constants/Colors";
-import { changePeg } from "../actions/pegActions";
-import { connect } from "react-redux";
 
-class GuessHistoryContainer extends React.Component {
+export default class GuessHistoryContainer extends React.Component {
   render() {
+    // console.log("/ / / / / / /");
+    // console.log(this.props.pegList);
+    // console.log("     \\ ");
+
     return (
       <View style={styles.container}>
         <ScrollView>
-          <Row
-            type="entry"
-            pegList={this.props.pegList}
-            pegAction={this.props.changePeg}
-          />
+          <Row type="entry">
+            <PegBox
+              type="entry"
+              pegList={this.props.pegList}
+              pegAction={this.props.pegAction}
+            />
+          </Row>
         </ScrollView>
       </View>
     );
   }
 }
-
-const mapStateToProps = state => {
-  return {
-    pegList: state.pegReducer.pegEntryList
-  };
-};
-
-const mapDispatchToProps = dispatch => ({
-  changePeg: data => {
-    dispatch(changePeg(data));
-  }
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(GuessHistoryContainer);
 
 const styles = StyleSheet.create({
   container: {

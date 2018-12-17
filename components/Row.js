@@ -1,6 +1,5 @@
 import React from "react";
 import { StyleSheet, TouchableOpacity, View, Text } from "react-native";
-import PegBox from "../components/PegBox";
 import OverallScoreBox from "./OverallScoreBox";
 import RowScoreBox from "./RowScoreBox";
 import CustomButton from "./CustomButton";
@@ -10,13 +9,7 @@ export default class Row extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.code}>
-          <PegBox
-            type={this.props.type}
-            pegList={this.props.pegList}
-            pegAction={this.props.pegAction}
-          />
-        </View>
+        <View style={styles.code}>{this.props.children}</View>
         <View style={styles.score}>
           {this.props.type === "code" ? (
             <OverallScoreBox />

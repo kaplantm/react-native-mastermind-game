@@ -1,4 +1,8 @@
 import { combineReducers } from "redux";
-import pegReducer from "./pegReducer";
+import guessReducer from "./guessReducer";
+import codeReducer from "./codeReducer";
 
-export default combineReducers({ pegReducer });
+export default combineReducers({
+  guessReducer: guessReducer,
+  codeReducer: codeReducer
+});

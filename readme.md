@@ -6,3 +6,6 @@ TODO
 - then logic to check guess
 - then ui updates for solved state
 - add error boundary
+
+* could add high scores screen later (async storage)
+* could add difficulty setting screen later (maybe try context?)

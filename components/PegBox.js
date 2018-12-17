@@ -34,7 +34,11 @@ export default class PegRow extends React.Component {
           <Peg
             key={element.id}
             peg={element}
-            styleProp={{ margin: 10, backgroundColor: element.color, flex: 1 }}
+            styleProp={{
+              margin: 10,
+              backgroundColor: Colors.codePegs[element.colorIndex].color,
+              flex: 1
+            }}
           />
         );
       }
