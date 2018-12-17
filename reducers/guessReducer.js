@@ -31,7 +31,7 @@ export default function guessReducer(
     }
     case ADD_GUESS: {
       let newGuessHistoryList = [...state.guessHistoryList];
-      newGuessHistoryList.push[action.payload];
+      newGuessHistoryList.push(action.payload);
       return { ...state, guessHistoryList: newGuessHistoryList };
     }
     default:
