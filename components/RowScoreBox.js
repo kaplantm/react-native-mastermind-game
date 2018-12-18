@@ -23,7 +23,6 @@ export default class RowScoreBox extends React.Component {
         scoreArray[i] = { color: Colors.scorePegs.none, id: "pos" + i };
       }
     }
-    console.log(this.props.guessList.score);
     //not sure shuffle array is neccessary, may just want to sort so black is first
     let pegElementList = scoreArray.map((element, index) => {
       return (

@@ -14,8 +14,10 @@ const blockedCode = {
 };
 
 export default class CodeContainer extends React.Component {
-  list = this.props.hasWon ? this.props.pegList : blockedCode;
+  list = blockedCode;
   render() {
+    this.list = this.props.hasWon ? this.props.pegList : blockedCode;
+
     const winStyle = this.props.score
       ? {
           backgroundColor: Colors.rowWinBg,

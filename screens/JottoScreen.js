@@ -52,7 +52,7 @@ class JottoScreen extends React.Component {
             codeLength={codeLength}
           />
           {this.props.hasWon ? (
-            <Banner color="green" text="You Win" />
+            <Banner color="green" text="You Win" action={this.props.reset} />
           ) : (
             <NewGuessContainer
               pegList={this.props.pegList}
