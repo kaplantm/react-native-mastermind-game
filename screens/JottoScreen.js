@@ -77,10 +77,10 @@ class JottoScreen extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    pegList: state.guessReducer.pegEntryList,
-    pegCodeList: state.codeReducer.pegCodeList,
-    guessList: state.guessReducer.guessHistoryList,
-    hasWon: state.guessReducer.hasWon
+    pegList: state.gameReducer.pegEntryList,
+    pegCodeList: state.gameReducer.pegCodeList,
+    guessList: state.gameReducer.guessHistoryList,
+    hasWon: state.gameReducer.hasWon
   };
 };
 

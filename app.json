@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "jotto",
-    "slug": "jotto",
+    "name": "Mastermind",
+    "slug": "mastermind",
     "privacy": "public",
     "sdkVersion": "31.0.0",
     "platforms": [
@@ -23,7 +23,13 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
-    }
+      "supportsTablet": true,
+      "bundleIdentifier": "com.tkaplan.mastermind"
+    },
+    "android": {
+      "package": "com.tkaplan.mastermind"
+    },
+    "description": "",
+    "githubUrl": "https://github.com/kaplantm/react-native-mastermind-game"
   }
 }

@@ -1,7 +1,20 @@
-import { CHANGE_PEG_COLOR, ADD_GUESS, RESET_GUESSES } from "../actions";
+import {
+  CHANGE_PEG_COLOR,
+  ADD_GUESS,
+  RESET_GUESSES,
+  GENERATE_CODE
+} from "../actions";
 import Colors from "../shared/Colors";
 
 const guessReducer_initialState = {
+  pegCodeList: {
+    pegs: [
+      { colorIndex: 0, pegIndex: 0, id: "first" },
+      { colorIndex: 1, pegIndex: 1, id: "second" },
+      { colorIndex: 2, pegIndex: 2, id: "third" },
+      { colorIndex: 3, pegIndex: 3, id: "fourth" }
+    ]
+  },
   pegEntryList: {
     pegs: [
       { colorIndex: 0, pegIndex: 0, id: "first" },
@@ -37,7 +50,6 @@ export default function guessReducer(
 
       let newGuessHistoryList = [...state.guessHistoryList];
 
-      //wasnt actually adding score to new guesses - need to continue refactoring
       newGuessHistoryList.push({
         ...action.payload.guess,
         ...action.payload.score
@@ -52,6 +64,15 @@ export default function guessReducer(
     }
     case RESET_GUESSES: {
       return guessReducer_initialState;
+    }
+    case GENERATE_CODE: {
+      newPegCodeList = state.pegCodeList.pegs.map((element, index) => {
+        element.colorIndex = action.payload[index];
+        return element;
+      });
+
+      let test = { ...state, pegCodeList: { pegs: newPegCodeList } };
+      return test;
     }
     default:
       return state;

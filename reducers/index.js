@@ -1,8 +1,6 @@
 import { combineReducers } from "redux";
-import guessReducer from "./guessReducer";
-import codeReducer from "./codeReducer";
+import gameReducer from "./gameReducer";
 
 export default combineReducers({
-  guessReducer: guessReducer,
-  codeReducer: codeReducer
+  gameReducer: gameReducer
 });
