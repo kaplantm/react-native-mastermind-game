@@ -5,12 +5,14 @@ import { CHANGE_PEG_COLOR, ADD_GUESS } from "../actions";
 // import renderer from 'react-test-renderer';
 
 const guessReducer_initialState = {
-  pegEntryList: [
-    { colorIndex: 0, pegIndex: 0, id: "first" },
-    { colorIndex: 1, pegIndex: 1, id: "second" },
-    { colorIndex: 2, pegIndex: 2, id: "third" },
-    { colorIndex: 3, pegIndex: 3, id: "fourth" }
-  ],
+  pegEntryList: {
+    pegs: [
+      { colorIndex: 0, pegIndex: 0, id: "first" },
+      { colorIndex: 1, pegIndex: 1, id: "second" },
+      { colorIndex: 2, pegIndex: 2, id: "third" },
+      { colorIndex: 3, pegIndex: 3, id: "fourth" }
+    ]
+  },
   guessHistoryList: []
 };
 
@@ -38,20 +40,24 @@ describe("Guess Entry", () => {
     };
     expect(
       guessReducer(guessReducer_initialState, action1).pegEntryList
-    ).toEqual([
-      { colorIndex: 0, pegIndex: 0, id: "first" },
-      { colorIndex: 1, pegIndex: 1, id: "second" },
-      { colorIndex: 3, pegIndex: 2, id: "third" },
-      { colorIndex: 3, pegIndex: 3, id: "fourth" }
-    ]);
+    ).toEqual({
+      pegs: [
+        { colorIndex: 0, pegIndex: 0, id: "first" },
+        { colorIndex: 1, pegIndex: 1, id: "second" },
+        { colorIndex: 3, pegIndex: 2, id: "third" },
+        { colorIndex: 3, pegIndex: 3, id: "fourth" }
+      ]
+    });
     expect(
       guessReducer(guessReducer_initialState, action2).pegEntryList
-    ).toEqual([
-      { colorIndex: 0, pegIndex: 0, id: "first" },
-      { colorIndex: 0, pegIndex: 1, id: "second" },
-      { colorIndex: 3, pegIndex: 2, id: "third" },
-      { colorIndex: 3, pegIndex: 3, id: "fourth" }
-    ]);
+    ).toEqual({
+      pegs: [
+        { colorIndex: 0, pegIndex: 0, id: "first" },
+        { colorIndex: 0, pegIndex: 1, id: "second" },
+        { colorIndex: 3, pegIndex: 2, id: "third" },
+        { colorIndex: 3, pegIndex: 3, id: "fourth" }
+      ]
+    });
   });
 
   it("ADD_GUESS increments guessList", async () => {

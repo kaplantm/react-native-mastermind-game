@@ -15,31 +15,58 @@ export const shuffleArray = array => {
 export const compareCode = (code, guess) => {
   code = code.map(element => element.colorIndex);
   guess = guess.map(element => element.colorIndex);
-
-  let exactScore = 0;
-  let containsScore = 0;
-  let message = "Guess again";
+  let score;
 
   if (code.join("") === guess.join("")) {
-    exactScore = 4;
-    containsScore = 0;
-    message = "You Win";
+    score = {
+      score: { exactScore: code.length, containsScore: 0, hasWon: true }
+    };
   } else {
-    code.forEach((element, index) => {
-      if (guess.indexOf(element) != -1) {
-        if (guess[index] == element) {
-          exactScore++;
-        } else {
-          containsScore++;
-        }
-      }
-    });
+    score = {
+      score: calculatePartialMatches(
+        calculateExactMatches([...code], [...guess])
+      )
+    };
   }
-  return {
-    score: {
-      exactScore: exactScore,
-      containsScore: containsScore,
-      message: message
+  return score;
+};
+
+const calculatePartialMatches = ({
+  code,
+  guess,
+  containsScore,
+  exactScore
+}) => {
+  [...code].forEach((element, index) => {
+    let otherIndex = guess.indexOf(element);
+    if (otherIndex != -1) {
+      code.splice(index, 1);
+      guess.splice(otherIndex, 1);
+      containsScore++;
     }
+  });
+
+  return {
+    containsScore: containsScore,
+    exactScore: exactScore,
+    hasWon: false
+  };
+};
+
+const calculateExactMatches = (code, guess) => {
+  let exactScore = 0;
+
+  [...code].forEach((element, index) => {
+    if (guess[index] == code[index] && guess[index] != undefined) {
+      code.splice(index, 1);
+      guess.splice(index, 1);
+      exactScore++;
+    }
+  });
+  return {
+    exactScore: exactScore,
+    containsScore: 0,
+    code: code,
+    guess: guess
   };
 };

@@ -35,8 +35,7 @@ class JottoScreen extends React.Component {
       this.props.pegCodeList.pegs,
       this.props.pegList.pegs
     );
-    let hasWon = score.exactScore === codeLength ? true : false;
-    this.props.addGuess(this.props.pegList, score, hasWon);
+    this.props.addGuess(this.props.pegList, score, score.score.hasWon);
   };
   render() {
     return (

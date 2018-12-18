@@ -12,16 +12,18 @@ const pegs = [
 
 export default class RowScoreBox extends React.Component {
   _renderPegs = () => {
+    const { exactScore, containsScore } = this.props.guessList.score;
     let scoreArray = [];
     for (let i = 0; i < this.props.codeLength; i++) {
-      if (i < this.props.guessList.score.exactScore) {
+      if (i < exactScore) {
         scoreArray[i] = { color: Colors.scorePegs.black, id: "pos" + i };
-      } else if (i < this.props.guessList.score.containsScore) {
+      } else if (i < exactScore + containsScore) {
         scoreArray[i] = { color: Colors.scorePegs.grey, id: "pos" + i };
       } else {
         scoreArray[i] = { color: Colors.scorePegs.none, id: "pos" + i };
       }
     }
+    console.log(this.props.guessList.score);
     //not sure shuffle array is neccessary, may just want to sort so black is first
     let pegElementList = scoreArray.map((element, index) => {
       return (

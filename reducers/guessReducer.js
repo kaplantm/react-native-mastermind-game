@@ -10,21 +10,7 @@ const guessReducer_initialState = {
       { colorIndex: 0, pegIndex: 3, id: "fourth" }
     ]
   },
-  guessHistoryList: [
-    {
-      score: {
-        containsScore: 0,
-        exactScore: 0,
-        message: "Guess Again" //TODO maybe remove message
-      },
-      pegs: [
-        { colorIndex: 0, pegIndex: 0, id: "first" },
-        { colorIndex: 1, pegIndex: 1, id: "second" },
-        { colorIndex: 2, pegIndex: 2, id: "third" },
-        { colorIndex: 3, pegIndex: 3, id: "fourth" }
-      ]
-    }
-  ],
+  guessHistoryList: [],
   hasWon: false
 };
 
