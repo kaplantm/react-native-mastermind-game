@@ -28,6 +28,7 @@ class JottoScreen extends React.Component {
 
   componentDidMount() {
     this.props.generateCode(codeLength);
+    console.log(this.props.pegCodeList.pegs);
   }
 
   _handleSubmitGuess = () => {
@@ -44,6 +45,7 @@ class JottoScreen extends React.Component {
           <CodeContainer
             pegList={this.props.pegCodeList}
             guessList={this.props.guessList}
+            hasWon={this.props.hasWon}
           />
           <GuessHistoryContainer
             guessList={this.props.guessList}

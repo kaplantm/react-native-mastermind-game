@@ -4,7 +4,17 @@ import Row from "./Row";
 import Colors from "../shared/Colors";
 import PegBox from "../components/PegBox";
 
+const blockedCode = {
+  pegs: [
+    { colorIndex: 0, pegIndex: 0, id: "first", type: "blocked" },
+    { colorIndex: 0, pegIndex: 1, id: "second", type: "blocked" },
+    { colorIndex: 0, pegIndex: 2, id: "third", type: "blocked" },
+    { colorIndex: 0, pegIndex: 3, id: "fourth", type: "blocked" }
+  ]
+};
+
 export default class CodeContainer extends React.Component {
+  list = this.props.hasWon ? this.props.pegList : blockedCode;
   render() {
     const winStyle = this.props.score
       ? {
@@ -15,12 +25,8 @@ export default class CodeContainer extends React.Component {
     return (
       <View style={[styles.container, winStyle]}>
         {/* TODO code row will later be added dynamicaly */}
-        <Row
-          type="code"
-          pegList={this.props.pegList}
-          guessList={this.props.guessList}
-        >
-          <PegBox type="code" pegList={this.props.pegList} />
+        <Row type="code" pegList={this.list} guessList={this.props.guessList}>
+          <PegBox type="code" pegList={this.list} />
         </Row>
       </View>
     );

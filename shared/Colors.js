@@ -16,5 +16,6 @@ export default {
     grey: "hsla(197, 20%, 90%, 1)",
     black: "hsla(197, 20%, 10%, 1)",
     none: "hsla(197, 20%, 100%, 0)"
-  }
+  },
+  blockedPegs: "hsla(197, 20%, 40%, 1)"
 };

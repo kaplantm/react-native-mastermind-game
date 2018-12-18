@@ -35,8 +35,12 @@ export default class GuessHistoryContainer extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <ScrollView>
-          {/* TODO rows will later be added dynamicaly */}
+        <ScrollView
+          ref={ref => (this.scrollView = ref)}
+          onContentSizeChange={(contentWidth, contentHeight) => {
+            this.scrollView.scrollToEnd({ animated: true });
+          }}
+        >
           {this._renderRows()}
         </ScrollView>
       </View>

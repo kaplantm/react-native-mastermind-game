@@ -25,13 +25,17 @@ export default class PegRow extends React.Component {
     );
   };
   _CodePegs = element => {
+    let color =
+      element.type == "blocked"
+        ? Colors.blockedPegs
+        : Colors.codePegs[element.colorIndex].color;
     return (
       <Peg
         key={element.id}
         peg={element}
         styleProp={{
           margin: 10,
-          backgroundColor: Colors.codePegs[element.colorIndex].color,
+          backgroundColor: color,
           flex: 1
         }}
       />
