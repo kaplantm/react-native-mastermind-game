@@ -1,4 +1,4 @@
-import { CHANGE_PEG_COLOR, ADD_GUESS } from ".";
+import { CHANGE_PEG_COLOR, ADD_GUESS, RESET_GUESSES } from ".";
 
 export function changePeg(peg) {
   return {
@@ -12,5 +12,11 @@ export function addGuess(pegList, score, hasWon) {
   return {
     type: ADD_GUESS,
     payload: { guess: pegList, score: score, hasWon: hasWon }
+  };
+}
+
+export function resetGuesses() {
+  return {
+    type: RESET_GUESSES
   };
 }

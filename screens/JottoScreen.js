@@ -16,7 +16,8 @@ import { connect } from "react-redux";
 import {
   CHANGE_PEG_FUNCTION,
   GENERATE_CODE_FUNCTION,
-  ADD_GUESS_FUNCTION
+  ADD_GUESS_FUNCTION,
+  RESET_GUESSES_FUNCTION
 } from "../actions/function_constants";
 
 const codeLength = 4; //TODO make this a setting
@@ -28,7 +29,6 @@ class JottoScreen extends React.Component {
 
   componentDidMount() {
     this.props.generateCode(codeLength);
-    console.log(this.props.pegCodeList.pegs);
   }
 
   _handleSubmitGuess = () => {
@@ -37,6 +37,11 @@ class JottoScreen extends React.Component {
       this.props.pegList.pegs
     );
     this.props.addGuess(this.props.pegList, score, score.score.hasWon);
+  };
+
+  _handleGameReset = () => {
+    this.props.resetGuesses();
+    this.props.generateCode(codeLength);
   };
   render() {
     return (
@@ -52,7 +57,11 @@ class JottoScreen extends React.Component {
             codeLength={codeLength}
           />
           {this.props.hasWon ? (
-            <Banner color="green" text="You Win" action={this.props.reset} />
+            <Banner
+              color="green"
+              text="You Win"
+              action={this._handleGameReset}
+            />
           ) : (
             <NewGuessContainer
               pegList={this.props.pegList}
@@ -84,6 +93,9 @@ const mapDispatchToProps = dispatch => ({
   },
   addGuess: (guess, solved, hasWon) => {
     dispatch(ADD_GUESS_FUNCTION(guess, solved, hasWon));
+  },
+  resetGuesses: () => {
+    dispatch(RESET_GUESSES_FUNCTION());
   }
 });
 

@@ -25,7 +25,6 @@ export default class PegRow extends React.Component {
     );
   };
   _CodePegs = element => {
-    console.log(element.type);
     let color =
       element.type == "blocked"
         ? Colors.blockedPegs

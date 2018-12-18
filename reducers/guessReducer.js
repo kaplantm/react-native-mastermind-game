@@ -1,4 +1,4 @@
-import { CHANGE_PEG_COLOR, ADD_GUESS } from "../actions";
+import { CHANGE_PEG_COLOR, ADD_GUESS, RESET_GUESSES } from "../actions";
 import Colors from "../shared/Colors";
 
 const guessReducer_initialState = {
@@ -49,6 +49,9 @@ export default function guessReducer(
         pegEntryList: defaultGuess,
         hasWon: action.payload.hasWon
       };
+    }
+    case RESET_GUESSES: {
+      return guessReducer_initialState;
     }
     default:
       return state;
