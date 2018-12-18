@@ -113,7 +113,5 @@ describe("Score Code Entry", () => {
   });
   it("should output how many pegs are exactly right, and how many are contained (code with repeats) ", async () => {
     expect(compareCode(codes[2], guesses[3])).toEqual(scores[6]);
-    // expect(compareCode(codes[2], guesses[1])).toEqual(scores[4]);
-    // expect(compareCode(codes[2], guesses[2])).toEqual(scores[5]);
   });
 });

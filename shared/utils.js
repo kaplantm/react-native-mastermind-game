@@ -15,6 +15,7 @@ export const shuffleArray = array => {
 export const compareCode = (code, guess) => {
   code = code.map(element => element.colorIndex);
   guess = guess.map(element => element.colorIndex);
+  // console.log("originalCode", code, "originalGuess", guess);
   let score;
 
   if (code.join("") === guess.join("")) {
@@ -37,18 +38,25 @@ const calculatePartialMatches = ({
   containsScore,
   exactScore
 }) => {
-  [...code].forEach((element, index) => {
-    let otherIndex = guess.indexOf(element);
-    if (otherIndex != -1) {
-      code.splice(index, 1);
-      guess.splice(otherIndex, 1);
-      containsScore++;
+  let newCodeList = [];
+  let newGuessList = [];
+
+  // console.log("WithoutExactsCode", code, "WithoutExactsGuess", guess);
+  let intersection = [...code].filter(element => {
+    if (element != undefined) {
+      let bool = guess.includes(element);
+      delete code[code.indexOf(element)];
+      delete guess[guess.indexOf(element)];
+      return bool;
+    } else {
+      return false;
     }
   });
+  containsScore = intersection.length;
 
   return {
-    containsScore: containsScore,
     exactScore: exactScore,
+    containsScore: containsScore,
     hasWon: false
   };
 };
@@ -56,17 +64,24 @@ const calculatePartialMatches = ({
 const calculateExactMatches = (code, guess) => {
   let exactScore = 0;
 
-  [...code].forEach((element, index) => {
-    if (guess[index] == code[index] && guess[index] != undefined) {
-      code.splice(index, 1);
-      guess.splice(index, 1);
+  let newCodeList = [];
+  let newGuessList = [];
+  //return exact score and lists with exacts removed
+
+  code.forEach((element, index) => {
+    if (guess[index] != code[index]) {
+      newCodeList.push(code[index]);
+      newGuessList.push(guess[index]);
+    } else {
       exactScore++;
     }
   });
+
   return {
     exactScore: exactScore,
     containsScore: 0,
-    code: code,
-    guess: guess
+    code: newCodeList,
+    guess: newGuessList,
+    hasWon: false
   };
 };
