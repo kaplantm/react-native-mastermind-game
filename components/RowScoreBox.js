@@ -1,19 +1,29 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { shuffleArray } from "../shared/utils";
 import Peg from "./Peg";
+import Colors from "../shared/Colors";
 
 const pegs = [
-  { color: "hsla(197, 20%, 90%, 1)", id: "pos1" },
-  { color: "hsla(197, 20%, 90%, 1)", id: "pos2" },
-  { color: "hsla(197, 20%, 10%, 1)", id: "pos3" },
-  { color: "hsla(197, 20%, 10%, 1)", id: "pos4" }
+  { color: Colors.scorePegs.grey, id: "pos1" },
+  { color: Colors.scorePegs.grey, id: "pos2" },
+  { color: Colors.scorePegs.grey, id: "pos3" },
+  { color: Colors.scorePegs.grey, id: "pos4" }
 ];
 
-export default class OverallScoreBox extends React.Component {
+export default class RowScoreBox extends React.Component {
   _renderPegs = () => {
+    let scoreArray = [];
+    for (let i = 0; i < this.props.codeLength; i++) {
+      if (i < this.props.guessList.score.exactScore) {
+        scoreArray[i] = { color: Colors.scorePegs.black, id: "pos" + i };
+      } else if (i < this.props.guessList.score.containsScore) {
+        scoreArray[i] = { color: Colors.scorePegs.grey, id: "pos" + i };
+      } else {
+        scoreArray[i] = { color: Colors.scorePegs.none, id: "pos" + i };
+      }
+    }
     //not sure shuffle array is neccessary, may just want to sort so black is first
-    let pegElementList = shuffleArray(pegs).map((element, index) => {
+    let pegElementList = scoreArray.map((element, index) => {
       return (
         <Peg
           key={element.id}

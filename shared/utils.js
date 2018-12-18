@@ -36,8 +36,10 @@ export const compareCode = (code, guess) => {
     });
   }
   return {
-    exactScore: exactScore,
-    containsScore: containsScore,
-    message: message
+    score: {
+      exactScore: exactScore,
+      containsScore: containsScore,
+      message: message
+    }
   };
 };

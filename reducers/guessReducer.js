@@ -25,7 +25,7 @@ const guessReducer_initialState = {
       ]
     }
   ],
-  isCorrectCode: false
+  hasWon: false
 };
 
 export default function guessReducer(
@@ -50,14 +50,18 @@ export default function guessReducer(
       };
 
       let newGuessHistoryList = [...state.guessHistoryList];
-      console.log(action.payload.guess);
-      newGuessHistoryList.push(action.payload.guess);
-      //TODO add test to make sure default guess is set
 
+      //wasnt actually adding score to new guesses - need to continue refactoring
+      newGuessHistoryList.push({
+        ...action.payload.guess,
+        ...action.payload.score
+      });
+      //TODO add test to make sure default guess is set
       return {
         ...state,
         guessHistoryList: newGuessHistoryList,
-        pegEntryList: defaultGuess
+        pegEntryList: defaultGuess,
+        hasWon: action.payload.hasWon
       };
     }
     default:

@@ -12,5 +12,9 @@ export default {
     { name: "green", color: "hsla(118, 64%, 74%, 1)" },
     { name: "yellow", color: "hsla(51, 85%, 74%, 1)" }
   ],
-  scorePegs: { grey: "hsla(197, 20%, 90%, 1)", black: "hsla(197, 20%, 10%, 1)" }
+  scorePegs: {
+    grey: "hsla(197, 20%, 90%, 1)",
+    black: "hsla(197, 20%, 10%, 1)",
+    none: "hsla(197, 20%, 100%, 0)"
+  }
 };

@@ -21,7 +21,12 @@ export default class GuessHistoryContainer extends React.Component {
   _renderRows() {
     return this.props.guessList.map((element, index) => {
       return (
-        <Row type="guess" key={"guessRow" + index.toString()}>
+        <Row
+          type="guess"
+          key={"guessRow" + index.toString()}
+          guessList={element}
+          codeLength={this.props.codeLength}
+        >
           <PegBox type="guess" pegList={element} />
         </Row>
       );

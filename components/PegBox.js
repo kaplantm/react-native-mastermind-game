@@ -54,6 +54,8 @@ export default class PegRow extends React.Component {
     );
   };
   _renderPegs = () => {
+    //TODO do i need separate functions for each? is there a better way?
+    //should use composition instead of ifs?
     const { pegList } = this.props;
     return pegList.pegs.map(element => {
       contents =

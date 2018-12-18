@@ -35,7 +35,8 @@ class JottoScreen extends React.Component {
       this.props.pegCodeList.pegs,
       this.props.pegList.pegs
     );
-    this.props.addGuess({ ...this.props.pegList, score });
+    let hasWon = score.exactScore === codeLength ? true : false;
+    this.props.addGuess(this.props.pegList, score, hasWon);
   };
   render() {
     return (
@@ -45,8 +46,11 @@ class JottoScreen extends React.Component {
             pegList={this.props.pegCodeList}
             guessList={this.props.guessList}
           />
-          <GuessHistoryContainer guessList={this.props.guessList} />
-          {this.props.isCorrectCode ? (
+          <GuessHistoryContainer
+            guessList={this.props.guessList}
+            codeLength={codeLength}
+          />
+          {this.props.hasWon ? (
             <Banner color="green" text="You Win" />
           ) : (
             <NewGuessContainer
@@ -66,7 +70,7 @@ const mapStateToProps = state => {
     pegList: state.guessReducer.pegEntryList,
     pegCodeList: state.codeReducer.pegCodeList,
     guessList: state.guessReducer.guessHistoryList,
-    isCorrectCode: state.guessReducer.isCorrectCode
+    hasWon: state.guessReducer.hasWon
   };
 };
 
@@ -77,8 +81,8 @@ const mapDispatchToProps = dispatch => ({
   generateCode: length => {
     dispatch(GENERATE_CODE_FUNCTION(length));
   },
-  addGuess: (guess, solved) => {
-    dispatch(ADD_GUESS_FUNCTION(guess, solved));
+  addGuess: (guess, solved, hasWon) => {
+    dispatch(ADD_GUESS_FUNCTION(guess, solved, hasWon));
   }
 });
 

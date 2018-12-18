@@ -23,7 +23,10 @@ export default class Row extends React.Component {
               <Text style={styles.buttonTextMinor}>Guess</Text>
             </CustomButton>
           ) : (
-            <RowScoreBox />
+            <RowScoreBox
+              guessList={this.props.guessList}
+              codeLength={this.props.codeLength}
+            />
           )}
         </View>
       </View>
