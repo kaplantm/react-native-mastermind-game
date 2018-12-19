@@ -1,5 +1,5 @@
 import React from "react";
-import { Platform } from "react-native";
+import { Platform, Text } from "react-native";
 import {
   createStackNavigator,
   createBottomTabNavigator
@@ -10,9 +10,21 @@ import JottoScreen from "../screens/JottoScreen";
 import StatsScreen from "../screens/StatsScreen";
 import HighScoresScreen from "../screens/HighScoresScreen";
 import SettingsScreen from "../screens/SettingsScreen";
+import Colors from "../shared/Colors";
 
 JottoScreen.navigationOptions = {
-  tabBarLabel: "Jotto",
+  tabBarLabel: ({ focused }) => (
+    <Text
+      focused={focused}
+      style={
+        focused
+          ? { color: Colors.tabIconSelected }
+          : { color: Colors.tabIconDefault }
+      }
+    >
+      Game
+    </Text>
+  ),
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
@@ -31,7 +43,18 @@ const ScoresStackTab = createStackNavigator({
 });
 
 ScoresStackTab.navigationOptions = {
-  tabBarLabel: "Scores",
+  tabBarLabel: ({ focused }) => (
+    <Text
+      focused={focused}
+      style={
+        focused
+          ? { color: Colors.tabIconSelected }
+          : { color: Colors.tabIconDefault }
+      }
+    >
+      Scores
+    </Text>
+  ),
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
@@ -41,7 +64,18 @@ ScoresStackTab.navigationOptions = {
 };
 
 SettingsScreen.navigationOptions = {
-  tabBarLabel: "Settings",
+  tabBarLabel: ({ focused }) => (
+    <Text
+      focused={focused}
+      style={
+        focused
+          ? { color: Colors.tabIconSelected }
+          : { color: Colors.tabIconDefault }
+      }
+    >
+      Settings
+    </Text>
+  ),
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}

@@ -40,6 +40,7 @@ const styles = StyleSheet.create({
     shadowColor: "hsla(197, 20%, 50%, 1)",
     shadowOffset: { width: 0, height: 0 },
     shadowOpacity: 0.5,
-    shadowRadius: 5
+    shadowRadius: 5,
+    marginBottom: 20
   }
 });
