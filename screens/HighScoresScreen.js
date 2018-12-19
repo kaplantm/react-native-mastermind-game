@@ -1,13 +1,15 @@
 import React from "react";
 import { ScrollView, StyleSheet, Text } from "react-native";
 import Colors from "../shared/Colors";
-import CustomButton from "../components/CustomButton";
+import CustomButton from "../components/shared/CustomButton";
 
-export default class LinksScreen extends React.Component {
+export default class HighScoresScreen extends React.Component {
   static navigationOptions = {
     title: "High Scores",
     headerStyle: {
-      backgroundColor: Colors.pageBg
+      backgroundColor: Colors.rowBg,
+      borderBottomColor: Colors.borderLight,
+      borderBottomWidth: 2
     },
     headerTitleStyle: {
       color: Colors.text

@@ -8,9 +8,9 @@ import {
   View
 } from "react-native";
 import Peg from "./Peg";
-import Colors from "../shared/Colors";
+import Colors from "../../shared/Colors";
 
-export default class PegRow extends React.Component {
+export default class PegBox extends React.Component {
   _GuessPegs = element => {
     return (
       <Peg

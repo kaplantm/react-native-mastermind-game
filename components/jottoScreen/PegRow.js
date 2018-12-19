@@ -2,10 +2,10 @@ import React from "react";
 import { StyleSheet, TouchableOpacity, View, Text } from "react-native";
 import OverallScoreBox from "./OverallScoreBox";
 import RowScoreBox from "./RowScoreBox";
-import CustomButton from "./CustomButton";
-import Colors from "../shared/Colors";
+import CustomButton from "../shared/CustomButton";
+import Colors from "../../shared/Colors";
 
-export default class Row extends React.Component {
+export default class PegRow extends React.Component {
   render() {
     return (
       <View style={[styles.container]}>

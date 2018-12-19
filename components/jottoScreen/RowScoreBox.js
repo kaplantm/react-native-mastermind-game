@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import Peg from "./Peg";
-import Colors from "../shared/Colors";
+import Colors from "../../shared/Colors";
 
 const pegs = [
   { color: Colors.scorePegs.grey, id: "pos1" },

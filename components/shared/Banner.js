@@ -1,13 +1,16 @@
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native"; //TODO: look through and remove unnecessary imports
 //reduce simple components to const, not react components
-import Colors from "../shared/Colors";
+import Colors from "../../shared/Colors";
 
 export default class Banner extends React.Component {
   //{ backgroundColor: this.props.color }
   render() {
     return (
-      <TouchableOpacity style={styles.container} onPress={this.props.action}>
+      <TouchableOpacity
+        style={[styles.container, this.props.styleProp]}
+        onPress={this.props.action}
+      >
         <Text style={styles.text}>{this.props.text}</Text>
       </TouchableOpacity>
     );

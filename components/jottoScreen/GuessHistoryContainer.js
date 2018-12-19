@@ -7,8 +7,8 @@ import {
   TouchableOpacity,
   View
 } from "react-native";
-import Row from "./Row";
-import PegBox from "../components/PegBox";
+import PegRow from "./PegRow";
+import PegBox from "./PegBox";
 
 const delly = [
   { colorIndex: 0, pegIndex: 1, id: "first" },
@@ -21,14 +21,14 @@ export default class GuessHistoryContainer extends React.Component {
   _renderRows() {
     return this.props.guessList.map((element, index) => {
       return (
-        <Row
+        <PegRow
           type="guess"
-          key={"guessRow" + index.toString()}
+          key={"row" + index.toString()}
           guessList={element}
           codeLength={this.props.codeLength}
         >
           <PegBox type="guess" pegList={element} />
-        </Row>
+        </PegRow>
       );
     });
   }

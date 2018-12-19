@@ -8,10 +8,10 @@ import {
   View
 } from "react-native";
 import { compareCode } from "../shared/utils";
-import CodeContainer from "../components/CodeContainer";
-import GuessHistoryContainer from "../components/GuessHistoryContainer";
-import NewGuessContainer from "../components/NewGuessContainer";
-import Banner from "../components/Banner";
+import CodeContainer from "../components/jottoScreen/CodeContainer";
+import GuessHistoryContainer from "../components/jottoScreen/GuessHistoryContainer";
+import NewGuessContainer from "../components/jottoScreen/NewGuessContainer";
+import Banner from "../components/shared/Banner";
 import { connect } from "react-redux";
 import {
   CHANGE_PEG_FUNCTION,

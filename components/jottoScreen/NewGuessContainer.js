@@ -7,9 +7,9 @@ import {
   TouchableOpacity,
   View
 } from "react-native";
-import Row from "./Row";
-import PegBox from "../components/PegBox";
-import Colors from "../shared/Colors";
+import Row from "./PegRow";
+import PegBox from "./PegBox";
+import Colors from "../../shared/Colors";
 
 export default class GuessHistoryContainer extends React.Component {
   render() {
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     borderTopWidth: 2,
     borderTopColor: "hsla(197, 20%, 50%, 1)",
     borderBottomWidth: 2,
-    borderBottomColor: Colors.rowBorder,
+    borderBottomColor: Colors.border,
     backgroundColor: Colors.rowBg,
     shadowColor: "hsla(197, 20%, 50%, 1)",
     shadowOffset: { width: 0, height: 0 },

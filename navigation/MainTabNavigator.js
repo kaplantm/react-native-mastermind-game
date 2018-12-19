@@ -5,7 +5,7 @@ import {
   createBottomTabNavigator
 } from "react-navigation";
 
-import TabBarIcon from "../components/TabBarIcon";
+import TabBarIcon from "./TabBarIcon";
 import JottoScreen from "../screens/JottoScreen";
 import StatsScreen from "../screens/StatsScreen";
 import HighScoresScreen from "../screens/HighScoresScreen";

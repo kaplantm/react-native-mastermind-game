@@ -1,8 +1,8 @@
 import React from "react";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
-import Row from "./Row";
-import Colors from "../shared/Colors";
-import PegBox from "../components/PegBox";
+import PegRow from "./PegRow";
+import Colors from "../../shared/Colors";
+import PegBox from "./PegBox";
 
 const blockedCode = {
   pegs: [
@@ -21,15 +21,19 @@ export default class CodeContainer extends React.Component {
     const winStyle = this.props.score
       ? {
           backgroundColor: Colors.rowWinBg,
-          borderColor: Colors.rowWinBorderLight
+          borderColor: Colors.borderLight
         }
       : {};
     return (
       <View style={[styles.container, winStyle]}>
         {/* TODO code row will later be added dynamicaly */}
-        <Row type="code" pegList={this.list} guessList={this.props.guessList}>
+        <PegRow
+          type="code"
+          pegList={this.list}
+          guessList={this.props.guessList}
+        >
           <PegBox type="code" pegList={this.list} />
-        </Row>
+        </PegRow>
       </View>
     );
   }
@@ -41,6 +45,6 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.rowBg,
     borderTopWidth: 2,
     borderBottomWidth: 2,
-    borderColor: Colors.rowBorderLight
+    borderColor: Colors.borderLight
   }
 });
