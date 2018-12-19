@@ -7,14 +7,11 @@ import {
 
 import TabBarIcon from "../components/TabBarIcon";
 import JottoScreen from "../screens/JottoScreen";
-import LinksScreen from "../screens/LinksScreen";
+import StatsScreen from "../screens/StatsScreen";
+import HighScoresScreen from "../screens/HighScoresScreen";
 import SettingsScreen from "../screens/SettingsScreen";
 
-const JottoStack = createStackNavigator({
-  Jotto: JottoScreen
-});
-
-JottoStack.navigationOptions = {
+JottoScreen.navigationOptions = {
   tabBarLabel: "Jotto",
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
@@ -28,12 +25,13 @@ JottoStack.navigationOptions = {
   )
 };
 
-const LinksStack = createStackNavigator({
-  Links: LinksScreen
+const ScoresStackTab = createStackNavigator({
+  HighScores: HighScoresScreen,
+  Stats: StatsScreen
 });
 
-LinksStack.navigationOptions = {
-  tabBarLabel: "Links",
+ScoresStackTab.navigationOptions = {
+  tabBarLabel: "Scores",
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
@@ -42,11 +40,7 @@ LinksStack.navigationOptions = {
   )
 };
 
-const SettingsStack = createStackNavigator({
-  Settings: SettingsScreen
-});
-
-SettingsStack.navigationOptions = {
+SettingsScreen.navigationOptions = {
   tabBarLabel: "Settings",
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
@@ -56,9 +50,8 @@ SettingsStack.navigationOptions = {
   )
 };
 
-// export default createBottomTabNavigator({
-//   JottoStack,
-//   LinksStack,
-//   SettingsStack,
-// });
-export default JottoStack;
+export default createBottomTabNavigator({
+  JottoScreen,
+  ScoresStackTab,
+  SettingsScreen
+});

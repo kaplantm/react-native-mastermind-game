@@ -17,7 +17,6 @@ export default class Row extends React.Component {
             <CustomButton
               onPress={this.props.addGuess}
               styleProp={{ backgroundColor: "white" }}
-              label="Guess"
             >
               <Text style={styles.buttonText}>+</Text>
               <Text style={styles.buttonTextMinor}>Guess</Text>
