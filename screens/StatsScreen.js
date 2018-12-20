@@ -1,11 +1,19 @@
 import React from "react";
 import { ScrollView, Text, StyleSheet, View } from "react-native";
 import Colors from "../shared/Colors";
-import StatBox from "../components/statsScreen/statBox";
+import StatBox from "../components/shared/statBox";
 
 export default class StatsScreen extends React.Component {
   static navigationOptions = {
-    title: "Game History"
+    title: "Game History",
+    headerStyle: {
+      backgroundColor: Colors.rowBg,
+      borderBottomColor: Colors.borderLight,
+      borderBottomWidth: 2
+    },
+    headerTitleStyle: {
+      color: Colors.text
+    }
   };
 
   render() {
@@ -21,14 +29,11 @@ export default class StatsScreen extends React.Component {
         <View style={styles.statsContainer}>
           <View style={styles.statRow}>
             <StatBox
-              styleProp={{
-                backgroundColor: Colors.colorKey.darkGreen,
-                aspectRatio: 1
-              }}
-              stylePropText={{
-                color: Colors.colorKey.white,
-                fontWeight: "600"
-              }}
+              styleProp={[
+                styles.statBox,
+                { backgroundColor: Colors.colorKey.darkGreen }
+              ]}
+              stylePropText={styles.statBoxText}
               content="W"
             />
             {/* <GameOutcomeIcon didWin={true} /> */}
@@ -36,28 +41,22 @@ export default class StatsScreen extends React.Component {
           </View>
           <View style={styles.statRow}>
             <StatBox
-              styleProp={{
-                backgroundColor: Colors.colorKey.red,
-                aspectRatio: 1
-              }}
-              stylePropText={{
-                color: Colors.colorKey.white,
-                fontWeight: "600"
-              }}
+              styleProp={[
+                styles.statBox,
+                { backgroundColor: Colors.colorKey.red }
+              ]}
+              stylePropText={styles.statBoxText}
               content="L"
             />
             <Text style={styles.statRowText}>12 guesses / 10 minutes</Text>
           </View>
           <View style={styles.statRow}>
             <StatBox
-              styleProp={{
-                backgroundColor: Colors.colorKey.darkGreen,
-                aspectRatio: 1
-              }}
-              stylePropText={{
-                color: Colors.colorKey.white,
-                fontWeight: "600"
-              }}
+              styleProp={[
+                styles.statBox,
+                { backgroundColor: Colors.colorKey.darkGreen }
+              ]}
+              stylePropText={styles.statBoxText}
               content="W"
             />
             <Text style={styles.statRowText}>12 guesses / 10 minutes</Text>
@@ -95,5 +94,14 @@ const styles = StyleSheet.create({
   statRowText: {
     paddingLeft: 10
     // color: Colors.colorKey.white
+  },
+  statBox: {
+    aspectRatio: 1,
+    padding: 5,
+    width: 30
+  },
+  statBoxText: {
+    color: Colors.colorKey.white,
+    fontWeight: "600"
   }
 });

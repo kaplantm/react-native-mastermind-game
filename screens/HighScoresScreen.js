@@ -17,7 +17,6 @@ export default class HighScoresScreen extends React.Component {
   };
 
   render() {
-    console.log(Colors.pagebg);
     return (
       <ScrollView style={styles.container}>
         <Text>

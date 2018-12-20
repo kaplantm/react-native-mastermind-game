@@ -22,3 +22,6 @@ if game ended, push game onto save game list (max 10 games)
 save settings on change
 
 load saved games from async on view scores page
+
+shared css
+actually implment settings

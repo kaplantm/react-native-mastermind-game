@@ -5,7 +5,7 @@ import {
   createBottomTabNavigator
 } from "react-navigation";
 
-import TabBarIcon from "./TabBarIcon";
+import TabBarIcon from "../components/TabBarIcon";
 import JottoScreen from "../screens/JottoScreen";
 import StatsScreen from "../screens/StatsScreen";
 import HighScoresScreen from "../screens/HighScoresScreen";
@@ -42,6 +42,8 @@ const ScoresStackTab = createStackNavigator({
   Stats: StatsScreen
 });
 
+HighScoresScreen.navigationOptions.headerBackTitle = "Scores";
+
 ScoresStackTab.navigationOptions = {
   tabBarLabel: ({ focused }) => (
     <Text
@@ -63,7 +65,12 @@ ScoresStackTab.navigationOptions = {
   )
 };
 
-SettingsScreen.navigationOptions = {
+//Settings needs to be in a stack to have react-navigation header
+const SettingsStackTab = createStackNavigator({
+  Settings: SettingsScreen
+});
+
+SettingsStackTab.navigationOptions = {
   tabBarLabel: ({ focused }) => (
     <Text
       focused={focused}
@@ -87,5 +94,5 @@ SettingsScreen.navigationOptions = {
 export default createBottomTabNavigator({
   JottoScreen,
   ScoresStackTab,
-  SettingsScreen
+  SettingsStackTab
 });

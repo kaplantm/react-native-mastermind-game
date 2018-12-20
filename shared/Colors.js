@@ -12,7 +12,7 @@ const colorKey = {
   none: "hsla(197, 20%, 100%, 0)"
 };
 
-export default {
+let colors = {
   tabIconDefault: colorKey.black,
   tabIconSelected: "#2f95dc",
   rowBg: colorKey.lightGrey,
@@ -35,3 +35,5 @@ export default {
   blockedPegs: colorKey.black,
   colorKey
 };
+
+export default colors;
