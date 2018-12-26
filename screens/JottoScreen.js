@@ -8,6 +8,7 @@ import {
 } from "react-native";
 import { compareCode } from "../shared/utils";
 import CodeContainer from "../components/jottoScreen/CodeContainer";
+import GameHeader from "../components/jottoScreen/GameHeader";
 import GuessHistoryContainer from "../components/jottoScreen/GuessHistoryContainer";
 import NewGuessContainer from "../components/jottoScreen/NewGuessContainer";
 import Banner from "../components/shared/Banner";
@@ -20,6 +21,7 @@ import {
 } from "../actions/function_constants";
 import { stylesLight, stylesDark } from "./jottoStyles";
 import { Audio } from "expo";
+import Colors from "../shared/Colors";
 
 const codeLength = 4; //TODO make this a setting
 const pegSoundObject = new Expo.Audio.Sound();
@@ -30,7 +32,9 @@ class JottoScreen extends React.Component {
   static navigationOptions = {
     header: null
   };
-
+  state = {
+    hasFailed: false
+  };
   componentDidMount = async () => {
     this.props.generateCode(codeLength);
     this.prepareSound();
@@ -43,39 +47,48 @@ class JottoScreen extends React.Component {
     await winSoundObject.loadAsync(require("../assets/sounds/win.wav"));
   };
 
-  _handleSubmitGuess = async () => {
+  playSound = async soundObject => {
+    if (this.props.sounds) {
+      soundObject.replayAsync();
+    }
+  };
+  _handleGiveUp = async () => {
+    this.setState({ hasFailed: true });
+    await guessSoundObject.setRateAsync(0.5, "shouldCorrectPitch");
+    this.playSound(guessSoundObject);
+  };
+  _handleSubmitGuess = () => {
     let score = compareCode(
       this.props.pegCodeList.pegs,
       this.props.pegList.pegs
     );
     try {
       if (score.score.hasWon) {
-        await winSoundObject.replayAsync();
+        this.playSound(winSoundObject);
       } else {
-        await guessSoundObject.replayAsync();
+        this.playSound(guessSoundObject);
       }
-
-      // Your sound is playing!
     } catch (error) {
-      // An error occurred!
+      console.warn(error);
     }
     this.props.addGuess(this.props.pegList, score, score.score.hasWon);
   };
 
-  _handleChangePeg = async peg => {
+  _handleChangePeg = peg => {
     try {
-      await pegSoundObject.replayAsync();
-
-      // Your sound is playing!
+      this.playSound(pegSoundObject);
     } catch (error) {
-      // An error occurred!
+      console.warn(error);
     }
 
     this.props.changePeg(peg);
   };
-  _handleGameReset = () => {
+  _handleGameReset = async () => {
+    this.setState({ hasFailed: false });
     this.props.resetGuesses();
     this.props.generateCode(codeLength);
+    await guessSoundObject.setRateAsync(1, "shouldCorrectPitch");
+    this.playSound(guessSoundObject);
   };
   render() {
     let styles = this.props.lightScheme ? stylesLight : stylesDark;
@@ -83,11 +96,18 @@ class JottoScreen extends React.Component {
     return (
       <SafeAreaView style={styles.container}>
         <View style={styles.contentContainer}>
+          <GameHeader
+            newGame={this.props.hasWon || this.state.hasFailed}
+            resetGame={this._handleGameReset}
+            giveUp={this._handleGiveUp}
+          />
+
           <CodeContainer
             styleProps={styles.codeContainer}
             pegList={this.props.pegCodeList}
             guessList={this.props.guessList}
             hasWon={this.props.hasWon}
+            hasFailed={this.state.hasFailed}
           />
           <GuessHistoryContainer
             guessList={this.props.guessList}
@@ -99,6 +119,8 @@ class JottoScreen extends React.Component {
               text="You Win"
               action={this._handleGameReset}
             />
+          ) : this.state.hasFailed ? (
+            <View style={styles.newGuessContainer} />
           ) : (
             <NewGuessContainer
               pegList={this.props.pegList}
@@ -119,7 +141,8 @@ const mapStateToProps = state => {
     pegCodeList: state.gameReducer.pegCodeList,
     guessList: state.gameReducer.guessHistoryList,
     hasWon: state.gameReducer.hasWon,
-    lightScheme: state.settingsReducer.lightScheme
+    lightScheme: state.settingsReducer.lightScheme,
+    sounds: state.settingsReducer.sounds
   };
 };
 

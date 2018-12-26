@@ -29,3 +29,6 @@ actually implment settings
 clean up colors - just use colorkey
 
 add sounds
+
+shared sound objs?
+one sound obj, multiple sources?

@@ -16,7 +16,10 @@ const blockedCode = {
 export default class CodeContainer extends React.Component {
   list = blockedCode;
   render() {
-    this.list = this.props.hasWon ? this.props.pegList : blockedCode;
+    this.list =
+      this.props.hasWon || this.props.hasFailed
+        ? this.props.pegList
+        : blockedCode;
 
     const winStyle = this.props.score
       ? {

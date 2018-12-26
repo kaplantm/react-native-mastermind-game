@@ -11,7 +11,9 @@ export default class Banner extends React.Component {
         style={[styles.container, this.props.styleProp]}
         onPress={this.props.action}
       >
-        <Text style={styles.text}>{this.props.text}</Text>
+        <Text style={[styles.text, this.props.textStyleProp]}>
+          {this.props.text}
+        </Text>
       </TouchableOpacity>
     );
   }

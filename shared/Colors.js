@@ -1,6 +1,7 @@
 const colorKey = {
   red: "hsla(0, 64%, 74%, 1)",
   blue: "hsla(197, 64%, 74%, 1)",
+  mediumBlue: "hsla(197, 64%, 54%, 1)",
   darkGreen: "hsla(118, 50%, 55%, 1)",
   green: "hsla(118, 64%, 74%, 1)",
   yellow: "hsla(51, 85%, 74%, 1)",

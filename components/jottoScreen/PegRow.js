@@ -16,7 +16,11 @@ export default class PegRow extends React.Component {
           ) : this.props.type === "entry" ? (
             <CustomButton
               onPress={this.props.addGuess}
-              styleProp={{ backgroundColor: "white" }}
+              styleProp={{
+                backgroundColor: "white",
+                aspectRatio: 1,
+                paddingTop: 0
+              }}
             >
               <Text style={styles.buttonText}>+</Text>
               <Text style={styles.buttonTextMinor}>Guess</Text>
@@ -36,7 +40,8 @@ export default class PegRow extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: "row"
+    flexDirection: "row",
+    paddingLeft: 5
   },
   code: {
     flex: 3

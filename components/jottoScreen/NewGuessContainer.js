@@ -15,15 +15,15 @@ export default class GuessHistoryContainer extends React.Component {
   render() {
     return (
       <View style={this.props.styleProp}>
-        <ScrollView>
-          <Row type="entry" addGuess={this.props.addGuess}>
-            <PegBox
-              type="entry"
-              pegList={this.props.pegList}
-              pegAction={this.props.pegAction}
-            />
-          </Row>
-        </ScrollView>
+        {/* <ScrollView> */}
+        <Row type="entry" addGuess={this.props.addGuess}>
+          <PegBox
+            type="entry"
+            pegList={this.props.pegList}
+            pegAction={this.props.pegAction}
+          />
+        </Row>
+        {/* </ScrollView> */}
       </View>
     );
   }
