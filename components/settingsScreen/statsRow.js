@@ -10,7 +10,10 @@ export default class StatsRow extends React.Component {
   render() {
     return (
       <View style={this.props.containerStyle}>
-        <CustomButton onPress={this.props.onPress} styleProp={styles.container}>
+        <CustomButton
+          onPress={this.props.onPress}
+          styleProp={[styles.container, this.props.stylePropsContainer]}
+        >
           <Text style={[this.props.stylePropText, styles.label]}>
             {this.props.label}
           </Text>

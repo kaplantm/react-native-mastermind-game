@@ -27,7 +27,8 @@ export default class App extends React.Component {
         <Provider store={store}>
           <View style={styles.container}>
             {Platform.OS === "ios" && <StatusBar barStyle="default" />}
-            <AppNavigator />
+            {/* now receiving screenprops on all screens - not actually using this, just a reminder of how to do it*/}
+            <AppNavigator screenProps={{ theme: "dark" }} />
           </View>
         </Provider>
       );

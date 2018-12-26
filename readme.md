@@ -25,3 +25,7 @@ load saved games from async on view scores page
 
 shared css
 actually implment settings
+
+clean up colors - just use colorkey
+
+add sounds

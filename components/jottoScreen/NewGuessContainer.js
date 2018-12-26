@@ -14,7 +14,7 @@ import Colors from "../../shared/Colors";
 export default class GuessHistoryContainer extends React.Component {
   render() {
     return (
-      <View style={styles.container}>
+      <View style={this.props.styleProp}>
         <ScrollView>
           <Row type="entry" addGuess={this.props.addGuess}>
             <PegBox
@@ -28,19 +28,3 @@ export default class GuessHistoryContainer extends React.Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    borderTopWidth: 2,
-    borderTopColor: "hsla(197, 20%, 50%, 1)",
-    borderBottomWidth: 2,
-    borderBottomColor: Colors.border,
-    backgroundColor: Colors.rowBg,
-    shadowColor: "hsla(197, 20%, 50%, 1)",
-    shadowOffset: { width: 0, height: 0 },
-    shadowOpacity: 0.5,
-    shadowRadius: 5,
-    marginBottom: 20
-  }
-});

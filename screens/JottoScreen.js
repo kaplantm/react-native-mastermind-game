@@ -2,7 +2,6 @@ import React from "react";
 import {
   ScrollView,
   SafeAreaView,
-  StyleSheet,
   Text,
   TouchableOpacity,
   View
@@ -19,6 +18,7 @@ import {
   ADD_GUESS_FUNCTION,
   RESET_GUESSES_FUNCTION
 } from "../actions/function_constants";
+import { stylesLight, stylesDark } from "./jottoStyles";
 
 const codeLength = 4; //TODO make this a setting
 
@@ -44,10 +44,13 @@ class JottoScreen extends React.Component {
     this.props.generateCode(codeLength);
   };
   render() {
+    let styles = this.props.lightScheme ? stylesLight : stylesDark;
+
     return (
       <SafeAreaView style={styles.container}>
         <View style={styles.contentContainer}>
           <CodeContainer
+            styleProps={styles.codeContainer}
             pegList={this.props.pegCodeList}
             guessList={this.props.guessList}
             hasWon={this.props.hasWon}
@@ -67,6 +70,7 @@ class JottoScreen extends React.Component {
               pegList={this.props.pegList}
               pegAction={this.props.changePeg}
               addGuess={this._handleSubmitGuess}
+              styleProp={styles.newGuessContainer}
             />
           )}
         </View>
@@ -80,7 +84,8 @@ const mapStateToProps = state => {
     pegList: state.gameReducer.pegEntryList,
     pegCodeList: state.gameReducer.pegCodeList,
     guessList: state.gameReducer.guessHistoryList,
-    hasWon: state.gameReducer.hasWon
+    hasWon: state.gameReducer.hasWon,
+    lightScheme: state.settingsReducer.lightScheme
   };
 };
 
@@ -103,13 +108,3 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(JottoScreen);
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff"
-  },
-  contentContainer: {
-    flex: 1
-  }
-});

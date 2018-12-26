@@ -6,8 +6,9 @@ const colorKey = {
   yellow: "hsla(51, 85%, 74%, 1)",
   lightGrey: "hsla(197, 20%, 95%, 1)",
   grey: "hsla(197, 20%, 90%, 1)",
-  darkGrey: "hsla(197, 30%, 50%, 1)",
-  black: "hsla(197, 20%, 40%, 1)",
+  darkGrey: "hsla(197, 40%, 50%, 1)",
+  dullGrey: "hsla(197, 10%, 50%, 1)",
+  black: "hsla(197, 40%, 40%, 1)",
   white: "hsla(197, 20%, 98%, 1)",
   none: "hsla(197, 20%, 100%, 0)"
 };

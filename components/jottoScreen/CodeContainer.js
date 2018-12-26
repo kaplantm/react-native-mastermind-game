@@ -25,7 +25,7 @@ export default class CodeContainer extends React.Component {
         }
       : {};
     return (
-      <View style={[styles.container, winStyle]}>
+      <View style={[this.props.styleProps, winStyle]}>
         {/* TODO code row will later be added dynamicaly */}
         <PegRow
           type="code"
@@ -38,13 +38,3 @@ export default class CodeContainer extends React.Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: Colors.rowBg,
-    borderTopWidth: 2,
-    borderBottomWidth: 2,
-    borderColor: Colors.borderLight
-  }
-});

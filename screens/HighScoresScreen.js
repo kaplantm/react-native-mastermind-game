@@ -1,9 +1,11 @@
 import React from "react";
-import { ScrollView, StyleSheet, Text } from "react-native";
+import { ScrollView, Text } from "react-native";
 import Colors from "../shared/Colors";
 import CustomButton from "../components/shared/CustomButton";
+import { stylesLight, stylesDark } from "./highScoresStyles";
+import { connect } from "react-redux";
 
-export default class HighScoresScreen extends React.Component {
+class HighScoresScreen extends React.Component {
   static navigationOptions = {
     title: "High Scores",
     headerStyle: {
@@ -17,13 +19,18 @@ export default class HighScoresScreen extends React.Component {
   };
 
   render() {
+    //styling dosen't work on this screen since i don't have redux connected yet
+    let styles = this.props.lightScheme ? stylesLight : stylesDark;
     return (
       <ScrollView style={styles.container}>
         <Text>
           This screen will contain high scores ever and/or in the past 50 games.
           Scores based on time and guesses.
         </Text>
-        <CustomButton onPress={() => this.props.navigation.navigate("Stats")}>
+        <CustomButton
+          onPress={() => this.props.navigation.navigate("Stats")}
+          styleProp={styles.button}
+        >
           <Text>More Details >></Text>
         </CustomButton>
       </ScrollView>
@@ -31,10 +38,10 @@ export default class HighScoresScreen extends React.Component {
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 15,
-    backgroundColor: "white"
-  }
-});
+const mapStateToProps = state => {
+  return {
+    lightScheme: state.settingsReducer.lightScheme
+  };
+};
+
+export default connect(mapStateToProps)(HighScoresScreen);
