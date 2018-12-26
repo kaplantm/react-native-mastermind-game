@@ -19,26 +19,60 @@ import {
   RESET_GUESSES_FUNCTION
 } from "../actions/function_constants";
 import { stylesLight, stylesDark } from "./jottoStyles";
+import { Audio } from "expo";
 
 const codeLength = 4; //TODO make this a setting
+const pegSoundObject = new Expo.Audio.Sound();
+const guessSoundObject = new Expo.Audio.Sound();
+const winSoundObject = new Expo.Audio.Sound();
 
 class JottoScreen extends React.Component {
   static navigationOptions = {
     header: null
   };
 
-  componentDidMount() {
+  componentDidMount = async () => {
     this.props.generateCode(codeLength);
-  }
+    this.prepareSound();
+  };
 
-  _handleSubmitGuess = () => {
+  prepareSound = async () => {
+    await Expo.Audio.setIsEnabledAsync(true);
+    await pegSoundObject.loadAsync(require("../assets/sounds/pop.wav"));
+    await guessSoundObject.loadAsync(require("../assets/sounds/guess.wav"));
+    await winSoundObject.loadAsync(require("../assets/sounds/win.wav"));
+  };
+
+  _handleSubmitGuess = async () => {
     let score = compareCode(
       this.props.pegCodeList.pegs,
       this.props.pegList.pegs
     );
+    try {
+      if (score.score.hasWon) {
+        await winSoundObject.replayAsync();
+      } else {
+        await guessSoundObject.replayAsync();
+      }
+
+      // Your sound is playing!
+    } catch (error) {
+      // An error occurred!
+    }
     this.props.addGuess(this.props.pegList, score, score.score.hasWon);
   };
 
+  _handleChangePeg = async peg => {
+    try {
+      await pegSoundObject.replayAsync();
+
+      // Your sound is playing!
+    } catch (error) {
+      // An error occurred!
+    }
+
+    this.props.changePeg(peg);
+  };
   _handleGameReset = () => {
     this.props.resetGuesses();
     this.props.generateCode(codeLength);
@@ -68,7 +102,7 @@ class JottoScreen extends React.Component {
           ) : (
             <NewGuessContainer
               pegList={this.props.pegList}
-              pegAction={this.props.changePeg}
+              pegAction={this._handleChangePeg}
               addGuess={this._handleSubmitGuess}
               styleProp={styles.newGuessContainer}
             />
