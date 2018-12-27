@@ -4,7 +4,8 @@ import {
   SafeAreaView,
   Text,
   TouchableOpacity,
-  View
+  View,
+  AsyncStorage
 } from "react-native";
 import { compareCode } from "../shared/utils";
 import CodeContainer from "../components/jottoScreen/CodeContainer";
@@ -100,6 +101,7 @@ class JottoScreen extends React.Component {
             newGame={this.props.hasWon || this.state.hasFailed}
             resetGame={this._handleGameReset}
             giveUp={this._handleGiveUp}
+            navigation={this.props.navigation}
           />
 
           <CodeContainer

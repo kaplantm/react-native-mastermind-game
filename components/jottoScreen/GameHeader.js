@@ -4,27 +4,44 @@ import { StyleSheet, Text, TouchableOpacity, View } from "react-native"; //TODO:
 import Colors from "../../shared/Colors";
 import GuessHistoryContainer from "./NewGuessContainer";
 
+import TabBarIcon from "../TabBarIcon";
+
 export default class GameHeader extends React.Component {
   render() {
-    let action = this.props.newGame ? this.props.resetGame : this.props.giveUp;
+    let gameAction = this.props.newGame
+      ? this.props.resetGame
+      : this.props.giveUp;
 
+    const { navigate } = this.props.navigation;
+    console.log(this.props.navigation);
     return (
-      <TouchableOpacity style={[styles.container]} onPress={action}>
-        <View
-          style={[
-            styles.inner,
-            {
-              backgroundColor: this.props.newGame
-                ? Colors.colorKey.mediumBlue
-                : Colors.colorKey.red
-            }
-          ]}
-        >
-          <Text style={styles.text}>
-            {this.props.newGame ? "New Game" : "Give Up"}
-          </Text>
-        </View>
-      </TouchableOpacity>
+      <View style={styles.container}>
+        <TouchableOpacity onPress={gameAction}>
+          <View
+            style={[
+              styles.inner,
+              {
+                backgroundColor: this.props.newGame
+                  ? Colors.colorKey.mediumBlue
+                  : Colors.colorKey.red
+              },
+              styles.item
+            ]}
+          >
+            <Text style={styles.text}>
+              {this.props.newGame ? "New Game" : "Give Up"}
+            </Text>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => navigate("Settings")}>
+          <View style={[styles.item]}>
+            <TabBarIcon
+              // focused={focused}
+              name={Platform.OS === "ios" ? "ios-settings" : "md-settings"}
+            />
+          </View>
+        </TouchableOpacity>
+      </View>
     );
   }
 }
@@ -32,16 +49,19 @@ export default class GameHeader extends React.Component {
 const styles = StyleSheet.create({
   container: {
     // flex: 0.2,
-    alignItems: "flex-end",
-    justifyContent: "center",
-    marginBottom: 20,
+    alignItems: "center",
+    justifyContent: "space-between",
+    flexDirection: "row",
+    // marginBottom: 20,
     // backgroundColor: Colors.colorKey.lightGrey,
-    paddingRight: 20,
+    paddingBottom: 10,
     // padding: 10,
+    // borderBottomColor: Colors.colorKey.grey,
+    // borderBottomWidth: 2,
     paddingTop: 0
   },
   inner: {
-    borderColor: Colors.colorKey.grey,
+    borderColor: "hsla(197, 0%, 0%, .1)",
     borderWidth: 2,
     padding: 5,
     paddingLeft: 15,
@@ -50,5 +70,9 @@ const styles = StyleSheet.create({
   text: {
     fontWeight: "500",
     color: Colors.colorKey.white
+  },
+  item: {
+    marginLeft: 20,
+    marginRight: 20
   }
 });
