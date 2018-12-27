@@ -4,7 +4,7 @@ import { StyleSheet, Text, TouchableOpacity, View } from "react-native"; //TODO:
 import Colors from "../../shared/Colors";
 import GuessHistoryContainer from "./NewGuessContainer";
 
-import TabBarIcon from "../TabBarIcon";
+import Icon from "../Icon";
 
 export default class GameHeader extends React.Component {
   render() {
@@ -13,7 +13,6 @@ export default class GameHeader extends React.Component {
       : this.props.giveUp;
 
     const { navigate } = this.props.navigation;
-    console.log(this.props.navigation);
     return (
       <View style={styles.container}>
         <TouchableOpacity onPress={gameAction}>
@@ -35,9 +34,10 @@ export default class GameHeader extends React.Component {
         </TouchableOpacity>
         <TouchableOpacity onPress={() => navigate("Settings")}>
           <View style={[styles.item]}>
-            <TabBarIcon
+            <Icon
               // focused={focused}
               name={Platform.OS === "ios" ? "ios-settings" : "md-settings"}
+              lightScheme={this.props.lightScheme}
             />
           </View>
         </TouchableOpacity>

@@ -6,11 +6,12 @@ import StatsRow from "../components/settingsScreen/statsRow";
 import { connect } from "react-redux";
 import { UPDATE_SETTINGS_FUNCTION } from "../actions/function_constants";
 import { stylesLight, stylesDark } from "./settingsStyles";
+import { playSound, storeData, retrieveData } from "../shared/utils";
+
+const buttonSoundObject = new Expo.Audio.Sound();
 
 class SettingsScreen extends React.Component {
   static navigationOptions = ({ navigation }) => {
-    const { params } = navigation.state;
-
     return {
       title: "Settings",
       headerStyle: {
@@ -23,11 +24,22 @@ class SettingsScreen extends React.Component {
       }
     };
   };
+  componentDidMount = async () => {
+    await buttonSoundObject.loadAsync(require("../assets/sounds/click.wav"));
+  };
 
-  _toggleSetting(setting) {
+  _toggleSetting = async setting => {
+    console.log("toggle");
     newSetting = !this.props[setting];
+
+    if (setting === "sounds") {
+      buttonSoundObject.replayAsync();
+    } else {
+      this.props.sounds && buttonSoundObject.replayAsync();
+      storeData("lightScheme", newSetting);
+    }
     this.props.updateSettings({ [setting]: newSetting });
-  }
+  };
 
   render() {
     let styles = this.props.lightScheme ? stylesLight : stylesDark;

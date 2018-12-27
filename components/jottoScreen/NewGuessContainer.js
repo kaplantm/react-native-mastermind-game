@@ -16,7 +16,11 @@ export default class GuessHistoryContainer extends React.Component {
     return (
       <View style={this.props.styleProp}>
         {/* <ScrollView> */}
-        <Row type="entry" addGuess={this.props.addGuess}>
+        <Row
+          type="entry"
+          addGuess={this.props.addGuess}
+          lightScheme={this.props.lightScheme}
+        >
           <PegBox
             type="entry"
             pegList={this.props.pegList}

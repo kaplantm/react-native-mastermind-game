@@ -1,20 +1,20 @@
+import { AsyncStorage } from "react-native";
+
 export const storeData = async (key, data) => {
   try {
-    await AsyncStorage.setItem(`MastermindStorage:${key}`, data);
+    await AsyncStorage.setItem("@MMStore:" + key, data.toString());
   } catch (error) {
-    // Error saving data
+    console.log("Failed to save data.");
   }
 };
-
-export const retrieveData = async item => {
+export const retrieveData = async key => {
   try {
-    const value = await AsyncStorage.getItem(item);
+    const value = await AsyncStorage.getItem("@MMStore:" + key);
     if (value !== null) {
-      // We have data!!
-      console.log(value);
+      return value;
     }
   } catch (error) {
-    // Error retrieving data
+    console.log("Failed to retreive data.");
   }
 };
 
@@ -35,7 +35,6 @@ export const shuffleArray = array => {
 export const compareCode = (code, guess) => {
   code = code.map(element => element.colorIndex);
   guess = guess.map(element => element.colorIndex);
-  // console.log("originalCode", code, "originalGuess", guess);
   let score;
 
   if (code.join("") === guess.join("")) {
@@ -61,7 +60,6 @@ const calculatePartialMatches = ({
   let newCodeList = [];
   let newGuessList = [];
 
-  // console.log("WithoutExactsCode", code, "WithoutExactsGuess", guess);
   let intersection = [...code].filter(element => {
     if (element != undefined) {
       let bool = guess.includes(element);

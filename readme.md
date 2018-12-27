@@ -32,3 +32,5 @@ add sounds
 
 shared sound objs?
 one sound obj, multiple sources?
+
+move has failed into redux game state?

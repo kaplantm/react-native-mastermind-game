@@ -4,10 +4,9 @@ import {
   SafeAreaView,
   Text,
   TouchableOpacity,
-  View,
-  AsyncStorage
+  View
 } from "react-native";
-import { compareCode } from "../shared/utils";
+import { compareCode, storeData, retrieveData } from "../shared/utils";
 import CodeContainer from "../components/jottoScreen/CodeContainer";
 import GameHeader from "../components/jottoScreen/GameHeader";
 import GuessHistoryContainer from "../components/jottoScreen/GuessHistoryContainer";
@@ -18,7 +17,8 @@ import {
   CHANGE_PEG_FUNCTION,
   GENERATE_CODE_FUNCTION,
   ADD_GUESS_FUNCTION,
-  RESET_GUESSES_FUNCTION
+  RESET_GUESSES_FUNCTION,
+  UPDATE_SETTINGS_FUNCTION
 } from "../actions/function_constants";
 import { stylesLight, stylesDark } from "./jottoStyles";
 import { Audio } from "expo";
@@ -33,12 +33,15 @@ class JottoScreen extends React.Component {
   static navigationOptions = {
     header: null
   };
+
   state = {
     hasFailed: false
   };
   componentDidMount = async () => {
     this.props.generateCode(codeLength);
     this.prepareSound();
+    let data = await retrieveData("lightScheme");
+    data == "false" && this.props.updateSettings({ lightScheme: false });
   };
 
   prepareSound = async () => {
@@ -48,26 +51,21 @@ class JottoScreen extends React.Component {
     await winSoundObject.loadAsync(require("../assets/sounds/win.wav"));
   };
 
-  playSound = async soundObject => {
-    if (this.props.sounds) {
-      soundObject.replayAsync();
-    }
-  };
   _handleGiveUp = async () => {
     this.setState({ hasFailed: true });
     await guessSoundObject.setRateAsync(0.5, "shouldCorrectPitch");
-    this.playSound(guessSoundObject);
+    this.props.sounds && guessSoundObject.replayAsync();
   };
-  _handleSubmitGuess = () => {
+  _handleSubmitGuess = async () => {
     let score = compareCode(
       this.props.pegCodeList.pegs,
       this.props.pegList.pegs
     );
     try {
       if (score.score.hasWon) {
-        this.playSound(winSoundObject);
+        this.props.sounds && winSoundObject.replayAsync();
       } else {
-        this.playSound(guessSoundObject);
+        this.props.sounds && guessSoundObject.replayAsync();
       }
     } catch (error) {
       console.warn(error);
@@ -75,9 +73,9 @@ class JottoScreen extends React.Component {
     this.props.addGuess(this.props.pegList, score, score.score.hasWon);
   };
 
-  _handleChangePeg = peg => {
+  _handleChangePeg = async peg => {
     try {
-      this.playSound(pegSoundObject);
+      this.props.sounds && pegSoundObject.replayAsync();
     } catch (error) {
       console.warn(error);
     }
@@ -89,7 +87,7 @@ class JottoScreen extends React.Component {
     this.props.resetGuesses();
     this.props.generateCode(codeLength);
     await guessSoundObject.setRateAsync(1, "shouldCorrectPitch");
-    this.playSound(guessSoundObject);
+    playSound(guessSoundObject);
   };
   render() {
     let styles = this.props.lightScheme ? stylesLight : stylesDark;
@@ -102,6 +100,7 @@ class JottoScreen extends React.Component {
             resetGame={this._handleGameReset}
             giveUp={this._handleGiveUp}
             navigation={this.props.navigation}
+            lightScheme={this.props.lightScheme}
           />
 
           <CodeContainer
@@ -129,6 +128,7 @@ class JottoScreen extends React.Component {
               pegAction={this._handleChangePeg}
               addGuess={this._handleSubmitGuess}
               styleProp={styles.newGuessContainer}
+              lightScheme={this.props.lightScheme}
             />
           )}
         </View>
@@ -160,6 +160,9 @@ const mapDispatchToProps = dispatch => ({
   },
   resetGuesses: () => {
     dispatch(RESET_GUESSES_FUNCTION());
+  },
+  updateSettings: data => {
+    dispatch(UPDATE_SETTINGS_FUNCTION(data));
   }
 });
 

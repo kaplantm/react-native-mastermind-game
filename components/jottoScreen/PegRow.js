@@ -16,14 +16,42 @@ export default class PegRow extends React.Component {
           ) : this.props.type === "entry" ? (
             <CustomButton
               onPress={this.props.addGuess}
-              styleProp={{
-                backgroundColor: "white",
-                aspectRatio: 1,
-                paddingTop: 0
-              }}
+              styleProp={
+                ({
+                  backgroundColor: Colors.colorKey.white,
+                  aspectRatio: 1,
+                  paddingTop: 0
+                },
+                this.props.lightScheme
+                  ? {}
+                  : {
+                      color: Colors.colorKey.grey,
+                      backgroundColor: Colors.colorKey.darkGrey,
+                      borderColor: Colors.colorKey.blue,
+                      borderWidth: 2
+                    })
+              }
             >
-              <Text style={styles.buttonText}>+</Text>
-              <Text style={styles.buttonTextMinor}>Guess</Text>
+              <Text
+                style={[
+                  styles.buttonText,
+                  this.props.lightScheme
+                    ? {}
+                    : { color: Colors.colorKey.lightGrey }
+                ]}
+              >
+                +
+              </Text>
+              <Text
+                style={[
+                  styles.buttonTextMinor,
+                  this.props.lightScheme
+                    ? {}
+                    : { color: Colors.colorKey.lightGrey }
+                ]}
+              >
+                Guess
+              </Text>
             </CustomButton>
           ) : (
             <RowScoreBox

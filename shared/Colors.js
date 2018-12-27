@@ -15,8 +15,6 @@ const colorKey = {
 };
 
 let colors = {
-  tabIconDefault: colorKey.black,
-  tabIconSelected: "#2f95dc",
   rowBg: colorKey.lightGrey,
   border: colorKey.darkGrey,
   borderLight: colorKey.grey,
